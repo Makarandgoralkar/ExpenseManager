@@ -1,0 +1,120 @@
+.settings-wrapper {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.settings-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 25px;
+}
+
+.settings-card {
+  background: #fff;
+  padding: 20px 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin-bottom: 25px;
+  transition: 0.3s;
+}
+
+.settings-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.icon {
+  font-size: 24px;
+  color: #007bff;
+}
+
+.settings-item {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #007bff;
+  font-weight: 500;
+}
+
+.settings-item:hover {
+  text-decoration: underline;
+}
+
+.settings-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  font-size: 17px;
+}
+
+.select-input {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+/* TOGGLE SWITCH */
+.switch {
+  position: relative;
+  width: 48px;
+  height: 25px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 50px;
+  height: 100%;
+  width: 100%;
+  transition: 0.4s;
+}
+
+.slider:before {
+  content: "";
+  position: absolute;
+  height: 21px;
+  width: 21px;
+  left: 2px;
+  bottom: 2px;
+  background: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #007bff;
+}
+
+input:checked + .slider:before {
+  transform: translateX(23px);
+}
+
+.delete-account-btn {
+  background: #d9534f;
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.delete-account-btn:hover {
+  background: #c9302c;
+}
+
+.about-text {
+  font-size: 15px;
+  color: #444;
+}

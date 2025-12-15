@@ -1,0 +1,129 @@
+body {
+  background: #f8f9fa;
+  color: #333;
+}
+
+.home-container {
+  text-align: center;
+  padding: 40px;
+}
+
+/* Search */
+.search-wrapper {
+  position: relative;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.search-wrapper i {
+  position: absolute;
+  left: 12px;
+  top: 35%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #888;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 12px 12px 40px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* Dashboard Cards */
+.dashboard {
+  padding: 20px;
+  min-height: 20vh;
+}
+
+.cards {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1;
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.2);
+  transition: 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 15px rgba(0,0,0,0.15);
+}
+
+.income { background: #28a745; }
+.expense { background: #dc3545; }
+.balance { background: #ffc107; color: black; }
+
+/* Recent Transactions */
+.recent-section {
+  margin-top: 40px;
+}
+
+.recent-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.see-all-btn {
+  background: #007bff;
+  border: none;
+  padding: 8px 16px;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.see-all-btn:hover {
+  background: #0056b3;
+}
+
+/* Table styles for recent transactions */
+.table-wrapper {
+  margin-top: 15px;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+}
+
+.transactions-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.transactions-table th,
+.transactions-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.transactions-table th {
+  background: #007bff;
+  color: white;
+}
+
+.click-row:hover {
+  background: #f1f1f1;
+  cursor: pointer;
+}
+
+.no-data {
+  text-align: center;
+  padding: 20px;
+  font-size: 16px;
+  color: #666;
+}

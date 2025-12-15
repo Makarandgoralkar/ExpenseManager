@@ -1,0 +1,141 @@
+/* FULL PAGE GRADIENT BACKGROUND */
+.auth-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #080808, #121212, #1e1e1e);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+/* APP LOGO + TITLE */
+.app-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.app-logo {
+  width: 65px;
+  margin-bottom: 8px;
+}
+
+.app-title {
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.app-tagline {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-top: 4px;
+}
+
+/* GLASS EFFECT CARD */
+.auth-card {
+  width: 100%;
+  max-width: 350px;
+  backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.auth-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.auth-card input {
+  width: 93%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: 1px solid #444;
+  background: #1b1b1b;
+  color: white;
+}
+
+.primary-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  background: #4a90e2;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  color: white;
+}
+
+.primary-btn:hover {
+  background: #357ab8;
+}
+
+/* SOCIAL BUTTONS */
+.social {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  border: none;
+}
+
+.social img {
+  width: 22px;
+}
+
+/* Individual colors */
+.google {
+  background: white;
+  color: black;
+}
+
+.facebook {
+  background: #1877f2;
+  color: white;
+}
+
+.linkedin {
+  background: #0a66c2;
+  color: white;
+}
+
+.divider {
+  text-align: center;
+  margin: 15px 0;
+  opacity: 0.7;
+}
+
+/* Messages */
+.error {
+  color: red;
+  margin-top: 8px;
+}
+
+.info-msg {
+  color: #87cefa;
+  margin-top: 10px;
+}
+
+/* Switch Page Link */
+.switch-page {
+  text-align: center;
+  margin-top: 18px;
+}
+
+.switch-page a {
+  color: #58a6ff;
+  font-weight: 600;
+  text-decoration: none;
+}

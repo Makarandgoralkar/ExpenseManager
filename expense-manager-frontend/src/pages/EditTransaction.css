@@ -1,0 +1,67 @@
+.edit-container {
+  width: 40%;
+  margin: 40px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+  position: relative; /* needed for absolute icon */
+}
+
+.delete-icon {
+  position: absolute;
+  top: 45px;
+  right: 30px;
+  font-size: 28px;
+  color: #dc3545;
+  cursor: pointer;
+  transition: 0.3s;
+  background: #fff;
+  padding: 8px;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.delete-icon:hover {
+  color: #fff;
+  background-color: #dc3545;
+  transform: scale(1.1);
+}
+
+.edit-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.edit-form label {
+  font-weight: bold;
+}
+
+.edit-form input,
+.edit-form select {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.update-btn {
+  background: #007bff;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.update-btn:hover {
+  background: #0056b3;
+}
