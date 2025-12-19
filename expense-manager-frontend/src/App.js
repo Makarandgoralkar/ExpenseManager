@@ -13,6 +13,7 @@ import Faq from "./pages/Faq";
 import About from "./pages/About";
 import Day from "./pages/Day";
 import Calendar from "./pages/Calendar";
+import GoPremium from "./pages/GoPremium";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/day" element={<Day />} />
         <Route path="/calendar" element={<Calendar />} />
+        <Route path="/goPremium" element={<GoPremium />} />
       </Routes>
     </Router>
   );

@@ -86,7 +86,7 @@ function ProfileDashboard() {
         <span>Tags</span>
         </div>
 
-        <div className="option-card" onClick={() => alert("Go Premium coming soon!")}>
+        <div className="option-card" onClick={() => handleNavigate("/goPremium")}>
         <FaStar />
         <span>Go Premium</span>
         </div>
