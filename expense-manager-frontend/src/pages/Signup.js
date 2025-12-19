@@ -5,6 +5,8 @@ import "./Auth.css";
 
 function Signup() {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
+  const [showPassword, setShowPassword] = useState(false);
+
   const [message, setMessage] = useState("");
 
   const handleChange = (e) =>
@@ -36,12 +38,20 @@ function Signup() {
         <form onSubmit={handleSubmit}>
           <input name="name" placeholder="Name" onChange={handleChange} />
           <input name="email" placeholder="Email" onChange={handleChange} />
+          <div className="password-wrapper">
           <input
             name="password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="Password"
             onChange={handleChange}
           />
+          <span
+            className="eye-icon"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+          {showPassword ? "🙈" : "👁️"}
+          </span>
+          </div>
           <button type="submit" className="primary-btn">Signup</button>
         </form>
 
