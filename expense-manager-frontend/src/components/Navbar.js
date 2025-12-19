@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Navbar.css";
 import { FaPlus, FaBars } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
-  const [showMore, setShowMore] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <nav className="navbar">
@@ -20,17 +21,10 @@ function Navbar() {
         </li>
 
         <li
-          className="more-menu"
-          onClick={() => setShowMore(!showMore)}
+        className="more-menu"
+        onClick={() => navigate("/profile-dashboard")}
         >
-          <FaBars />
-          {showMore && (
-            <div className="dropdown">
-              <a href="/profile">Profile</a>
-              <a href="/settings">Settings</a>
-              <a href="/login">Logout</a>
-            </div>
-          )}
+        <FaBars />
         </li>
       </ul>
     </nav>

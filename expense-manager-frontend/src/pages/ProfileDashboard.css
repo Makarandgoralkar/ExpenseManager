@@ -1,0 +1,81 @@
+.profile-dashboard-container {
+  width: 90%;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.profile-header-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  color: white;
+  padding: 25px 30px;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+.profile-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #fff;
+  color: #007bff;
+  font-size: 40px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-info h2 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.profile-info p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+/* Options Grid */
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
+}
+
+.option-card {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+.option-card span {
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.option-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.options-title {
+  grid-column: 1 / -1; /* full width */
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin: 10px 0 5px;
+  padding-left: 5px;
+}

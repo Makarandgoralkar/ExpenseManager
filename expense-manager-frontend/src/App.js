@@ -8,6 +8,7 @@ import EditTransaction from "./pages/EditTransaction";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
 import Analysis from "./pages/Analysis";
+import ProfileDashboard from "./pages/ProfileDashboard";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/analysis" element={<Analysis />} />
+        <Route path="/profile-dashboard" element={<ProfileDashboard />} />
       </Routes>
     </Router>
   );
