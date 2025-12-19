@@ -36,14 +36,16 @@ function Signup() {
         <h2>Signup</h2>
 
         <form onSubmit={handleSubmit}>
-          <input name="name" placeholder="Name" onChange={handleChange} />
-          <input name="email" placeholder="Email" onChange={handleChange} />
+          <input name="name" placeholder="Name" value={form.name} onChange={handleChange} autoComplete="off" />
+          <input name="email" placeholder="Email" value={form.email} onChange={handleChange} autoComplete="off" />
           <div className="password-wrapper">
           <input
             name="password"
             type={showPassword ? "text" : "password"}
             placeholder="Password"
+            value={form.password}
             onChange={handleChange}
+            autoComplete="new-password"
           />
           <span
             className="eye-icon"

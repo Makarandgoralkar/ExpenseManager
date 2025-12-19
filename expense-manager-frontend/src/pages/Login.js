@@ -53,7 +53,9 @@ function Login() {
           <input
             name="email"
             placeholder="Email"
+            value={form.email}
             onChange={handleChange}
+            autoComplete="off"
           />
           {/* PASSWORD WITH EYE */}
           <div className="password-wrapper">
@@ -61,7 +63,9 @@ function Login() {
               name="password"
               type={showPassword ? "text" : "password"}
               placeholder="Password"
+              value={form.password}
               onChange={handleChange}
+              autoComplete="new-password"
             />
             <span
               className="eye-icon"
