@@ -9,6 +9,10 @@ import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
 import Analysis from "./pages/Analysis";
 import ProfileDashboard from "./pages/ProfileDashboard";
+import Faq from "./pages/Faq";
+import About from "./pages/About";
+import Day from "./pages/Day";
+import Calendar from "./pages/Calendar";
 
 function App() {
   return (
@@ -25,6 +29,10 @@ function App() {
         <Route path="/settings" element={<Settings />} />
         <Route path="/analysis" element={<Analysis />} />
         <Route path="/profile-dashboard" element={<ProfileDashboard />} />
+        <Route path="/faq" element={<Faq />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/day" element={<Day />} />
+        <Route path="/calendar" element={<Calendar />} />
       </Routes>
     </Router>
   );

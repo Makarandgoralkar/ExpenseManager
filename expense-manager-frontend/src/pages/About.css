@@ -1,0 +1,27 @@
+.about-container {
+  width: 80%;
+  margin: 40px auto;
+}
+
+.about-card {
+  background: #fff;
+  padding: 20px 25px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.about-card h2 {
+  margin-top: 0;
+  color: #007bff;
+}
+
+.about-card a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.about-card a:hover {
+  text-decoration: underline;
+}
