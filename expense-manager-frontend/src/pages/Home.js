@@ -135,33 +135,33 @@ function Home() {
         </tr>
       </thead>
 
-              <tbody>
-              {recentExpenses.map((e) => (
-                <tr
-                  key={e.id}
-                  className="click-row"
-                  onClick={() => navigate(`/edit/${e.id}`)}
-                >
-                  <td>{e.title}</td>
-                  <td>₹{e.amount}</td>
-                  <td>{e.category}</td>
-                  <td>{e.type}</td>
-                  <td>{e.date}</td>
-                </tr>
-             ))}
+      <tbody>
+        {recentExpenses.map((e) => (
+          <tr
+            key={e.id}
+            className="click-row"
+            onClick={() => navigate(`/edit/${e.id}`)}
+          >
+            <td>{e.title}</td>
+            <td>₹{e.amount}</td>
+            <td>{e.category}</td>
+            <td>{e.type}</td>
+            <td>{e.date}</td>
+          </tr>
+          ))}
 
-              {recentExpenses.length === 0 && (
-                <tr>
-                  <td colSpan="5" className="no-data">
-                    No recent transactions
-                  </td>
-                </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+          {recentExpenses.length === 0 && (
+            <tr>
+              <td colSpan="5" className="no-data">
+                No recent transactions
+              </td>
+            </tr>
+          )}
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
     </>
   );
 }

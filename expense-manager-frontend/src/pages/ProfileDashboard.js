@@ -52,8 +52,19 @@ function ProfileDashboard() {
       <div className="profile-dashboard-container">
         {/* --- Profile Header --- */}
         <div className="profile-header-card">
-          <div className="profile-image">{profilePic}</div>
-          <div className="profile-info">
+          <div
+            className="profile-image"
+            onClick={() => handleNavigate("/profile")}
+            style={{ cursor: "pointer" }}
+          >
+          {profilePic}
+          </div>
+
+          <div
+            className="profile-info"
+            onClick={() => handleNavigate("/profile")}
+            style={{ cursor: "pointer" }}
+          >
             <h2>{user.name}</h2>
             <p>{user.email}</p>
           </div>

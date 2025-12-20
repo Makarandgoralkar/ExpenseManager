@@ -56,11 +56,6 @@ body {
   transition: 0.2s ease;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 6px 15px rgba(0,0,0,0.15);
-}
-
 .income { background: #28a745; }
 .expense { background: #dc3545; }
 .balance { background: #ffc107; color: black; }
