@@ -35,8 +35,8 @@ body {
 
 /* Big profile image */
 .home-profile-img {
-  width: 64px;
-  height: 64px;
+  width: 84px;
+  height: 84px;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid #007bff;
