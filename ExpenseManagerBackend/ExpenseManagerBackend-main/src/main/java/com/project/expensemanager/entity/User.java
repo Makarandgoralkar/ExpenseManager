@@ -18,6 +18,10 @@ public class User {
 
     private String password;
 
+    @Lob
+    @Column(name = "profile_picture", columnDefinition = "MEDIUMBLOB")
+    private byte[] profilePicture;
+
     private LocalDateTime createdAt = LocalDateTime.now();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -38,4 +42,7 @@ public class User {
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
     public List<Expense> getExpenses() { return expenses; }
     public void setExpenses(List<Expense> expenses) { this.expenses = expenses; }
+
+    public byte[] getProfilePicture() { return profilePicture; }
+    public void setProfilePicture(byte[] profilePicture) { this.profilePicture = profilePicture; }
 }

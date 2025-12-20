@@ -67,3 +67,30 @@
 .eye-icon:hover {
   color: #007bff;
 }
+
+.profile-image-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.profile-preview,
+.profile-placeholder {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.profile-preview {
+  object-fit: cover;
+}
+
+.profile-placeholder {
+  background: #007bff;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

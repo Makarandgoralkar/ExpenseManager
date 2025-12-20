@@ -15,28 +15,41 @@ import "./ProfileDashboard.css";
 
 function ProfileDashboard() {
   const [user, setUser] = useState({ name: "", email: "" });
-  const [profilePic, setProfilePic] = useState("");
+  const [profilePic, setProfilePic] = useState(""); // base64 or letter
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchUser = async () => {
+    const fetchUserAndImage = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await fetch("http://localhost:8080/api/user/profile", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
 
-        const data = await res.json();
-        setUser(data);
-        setProfilePic(data.profilePic || data.name.charAt(0).toUpperCase());
+        // 1️⃣ Fetch user details
+        const userRes = await fetch("http://localhost:8080/api/user/profile", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const userData = await userRes.json();
+        setUser(userData);
+
+        // 2️⃣ Fetch profile picture
+        const imgRes = await fetch(
+          "http://localhost:8080/api/user/profile/picture",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+
+        if (imgRes.ok) {
+          const base64 = await imgRes.text();
+          setProfilePic(`data:image/jpeg;base64,${base64}`);
+        } else {
+          setProfilePic(userData.name.charAt(0).toUpperCase());
+        }
       } catch (err) {
-        console.error("Failed to fetch user", err);
+        console.error("Failed to fetch profile", err);
       }
     };
 
-    fetchUser();
+    fetchUserAndImage();
   }, []);
 
   const handleNavigate = (path) => navigate(path);
@@ -57,7 +70,11 @@ function ProfileDashboard() {
             onClick={() => handleNavigate("/profile")}
             style={{ cursor: "pointer" }}
           >
-          {profilePic}
+            {profilePic.startsWith("data:image") ? (
+              <img src={profilePic} alt="Profile" />
+            ) : (
+              profilePic
+            )}
           </div>
 
           <div
@@ -70,77 +87,76 @@ function ProfileDashboard() {
           </div>
         </div>
 
-       {/* --- Options Grid --- */}
-       <div className="options-grid">
-        <div className="option-card" onClick={() => handleNavigate("/transactions")}>
-        <FaMoneyBillAlt />
-        <span>Transactions</span>
-        </div>
+        {/* --- Options Grid --- */}
+        <div className="options-grid">
+          <div className="option-card" onClick={() => handleNavigate("/transactions")}>
+            <FaMoneyBillAlt />
+            <span>Transactions</span>
+          </div>
 
-        <div className="option-card" onClick={() => handleNavigate("/scheduled-transactions")}>
-        <FaCalendarAlt />
-        <span>Scheduled Txns</span>
-        </div>
+          <div className="option-card" onClick={() => handleNavigate("/scheduled-transactions")}>
+            <FaCalendarAlt />
+            <span>Scheduled Txns</span>
+          </div>
 
-        <div className="option-card" onClick={() => handleNavigate("/budgets")}>
-        <FaMoneyBillAlt />
-        <span>Budgets</span>
-        </div>
+          <div className="option-card" onClick={() => handleNavigate("/budgets")}>
+            <FaMoneyBillAlt />
+            <span>Budgets</span>
+          </div>
 
-        <div className="option-card" onClick={() => handleNavigate("/categories")}>
-        <FaMoneyBillAlt />
-        <span>Categories</span>
-        </div>
+          <div className="option-card" onClick={() => handleNavigate("/categories")}>
+            <FaMoneyBillAlt />
+            <span>Categories</span>
+          </div>
 
-        <div className="option-card" onClick={() => handleNavigate("/tags")}>
-        <FaMoneyBillAlt />
-        <span>Tags</span>
-        </div>
+          <div className="option-card" onClick={() => handleNavigate("/tags")}>
+            <FaMoneyBillAlt />
+            <span>Tags</span>
+          </div>
 
-        <div className="option-card" onClick={() => handleNavigate("/goPremium")}>
-        <FaStar />
-        <span>Go Premium</span>
-        </div>
+          <div className="option-card" onClick={() => handleNavigate("/goPremium")}>
+            <FaStar />
+            <span>Go Premium</span>
+          </div>
 
-        <div className="options-title">Views</div>
+          <div className="options-title">Views</div>
 
-        <div className="option-card" onClick={() => handleNavigate("/day")}>
-        <FaDyalog />
-        <span>Day</span>
-        </div>
+          <div className="option-card" onClick={() => handleNavigate("/day")}>
+            <FaDyalog />
+            <span>Day</span>
+          </div>
 
-        <div className="option-card" onClick={() => handleNavigate("/calendar")}>
-        <FaCalendarAlt />
-        <span>Calendar</span>
-        </div>
+          <div className="option-card" onClick={() => handleNavigate("/calendar")}>
+            <FaCalendarAlt />
+            <span>Calendar</span>
+          </div>
 
-        {/* ✅ MORE OPTIONS TITLE */}
-        <div className="options-title">More Options</div>
+          <div className="options-title">More Options</div>
 
-        <div className="option-card" onClick={() => handleNavigate("/settings")}>
-        <FaCog />
-        <span>Settings</span>
-        </div>
+          <div className="option-card" onClick={() => handleNavigate("/settings")}>
+            <FaCog />
+            <span>Settings</span>
+          </div>
 
-        <div className="option-card" onClick={() => alert("Invite feature coming soon!")}>
-        <FaUserPlus />
-        <span>Invite a Friend</span>
-        </div>
+          <div className="option-card" onClick={() => alert("Invite feature coming soon!")}>
+            <FaUserPlus />
+            <span>Invite a Friend</span>
+          </div>
 
-        <div className="option-card" onClick={() => handleNavigate("/faq")}>
-        <FaQuestionCircle />
-        <span>FAQs</span>
-        </div>
+          <div className="option-card" onClick={() => handleNavigate("/faq")}>
+            <FaQuestionCircle />
+            <span>FAQs</span>
+          </div>
 
-        <div className="option-card" onClick={() => handleNavigate("/about")}>
-        <FaQuestionCircle />
-        <span>About App</span>
-        </div>
+          <div className="option-card" onClick={() => handleNavigate("/about")}>
+            <FaQuestionCircle />
+            <span>About App</span>
+          </div>
 
-        <div className="option-card" onClick={handleSignOut}>
-        <FaSignOutAlt />
-        <span>Sign Out</span>
-        </div>
+          <div className="option-card" onClick={handleSignOut}>
+            <FaSignOutAlt />
+            <span>Sign Out</span>
+          </div>
         </div>
       </div>
     </>

@@ -9,6 +9,7 @@ function Home() {
   const [summary, setSummary] = useState({ totalIncome: 0, totalExpense: 0 });
   const [userName, setUserName] = useState("");
   const [greeting, setGreeting] = useState("");
+  const [profilePic, setProfilePic] = useState(null);
 
   const navigate = useNavigate();
 
@@ -22,19 +23,26 @@ function Home() {
   };
 
   // Fetch user profile
-  const fetchUserName = async () => {
+  const fetchUserProfile = async () => {
     try {
-      const token = localStorage.getItem("token");
-      const res = await API.get("/user/profile", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await API.get("/user/profile");
       setUserName(res.data.name);
     } catch (error) {
       console.error("Failed to fetch user profile", error);
     }
   };
 
-  // Greeting logic wrapped in useCallback
+  // Fetch profile picture
+  const fetchProfilePicture = async () => {
+    try {
+      const res = await API.get("/user/profile/picture");
+      setProfilePic(res.data); // base64
+    } catch {
+      setProfilePic(null);
+    }
+  };
+
+  // Greeting logic
   const getGreeting = useCallback(() => {
     const hour = new Date().getHours();
     if (hour >= 5 && hour < 12) return "Good Morning";
@@ -47,17 +55,16 @@ function Home() {
     setGreeting(getGreeting());
   }, [getGreeting]);
 
-  // Main effect
   useEffect(() => {
     fetchData();
-    fetchUserName();
+    fetchUserProfile();
+    fetchProfilePicture();
     updateGreeting();
 
     const interval = setInterval(updateGreeting, 60000);
     return () => clearInterval(interval);
   }, [updateGreeting]);
 
-  // Search expenses
   const handleSearch = async (keyword) => {
     if (keyword.trim() === "") {
       fetchData();
@@ -74,13 +81,34 @@ function Home() {
     <>
       <Navbar />
 
-      <div className="home-container">
-        {/* --- GREETING --- */}
-        <h2 className="greeting">
-          {greeting}, {userName}!
-        </h2>
+      {/* 🔝 HEADER: GREETING LEFT | PROFILE RIGHT */}
+      <div className="home-header">
+        <div className="home-greeting">
+          <h1>{greeting},</h1>
+          <h2>{userName}</h2>
+        </div>
 
-        {/* Search Bar */}
+        <div
+          className="home-profile"
+          onClick={() => navigate("/profile")}
+        >
+          {profilePic ? (
+            <img
+              src={`data:image/jpeg;base64,${profilePic}`}
+              alt="Profile"
+              className="home-profile-img"
+            />
+          ) : (
+            <div className="home-profile-placeholder">
+              {userName.charAt(0).toUpperCase()}
+            </div>
+          )}
+          <span className="home-profile-name">{userName}</span>
+        </div>
+      </div>
+
+      <div className="home-container">
+        {/* Search */}
         <div className="search-wrapper">
           <i className="fa fa-search"></i>
           <input
@@ -113,55 +141,55 @@ function Home() {
 
         {/* Recent Transactions */}
         <div className="recent-section">
-  <h2 className="recent-title">
-    Recent Transactions
-    <button
-      className="see-all-btn"
-      onClick={() => navigate("/transactions")}
-    >
-      See All
-    </button>
-  </h2>
+          <h2 className="recent-title">
+            Recent Transactions
+            <button
+              className="see-all-btn"
+              onClick={() => navigate("/transactions")}
+            >
+              See All
+            </button>
+          </h2>
 
-  <div className="table-wrapper">
-    <table className="transactions-table">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Amount</th>
-          <th>Category</th>
-          <th>Type</th>
-          <th>Date</th>
-        </tr>
-      </thead>
+          <div className="table-wrapper">
+            <table className="transactions-table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Amount</th>
+                  <th>Category</th>
+                  <th>Type</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
 
-      <tbody>
-        {recentExpenses.map((e) => (
-          <tr
-            key={e.id}
-            className="click-row"
-            onClick={() => navigate(`/edit/${e.id}`)}
-          >
-            <td>{e.title}</td>
-            <td>₹{e.amount}</td>
-            <td>{e.category}</td>
-            <td>{e.type}</td>
-            <td>{e.date}</td>
-          </tr>
-          ))}
+              <tbody>
+                {recentExpenses.map((e) => (
+                  <tr
+                    key={e.id}
+                    className="click-row"
+                    onClick={() => navigate(`/edit/${e.id}`)}
+                  >
+                    <td>{e.title}</td>
+                    <td>₹{e.amount}</td>
+                    <td>{e.category}</td>
+                    <td>{e.type}</td>
+                    <td>{e.date}</td>
+                  </tr>
+                ))}
 
-          {recentExpenses.length === 0 && (
-            <tr>
-              <td colSpan="5" className="no-data">
-                No recent transactions
-              </td>
-            </tr>
-          )}
-      </tbody>
-    </table>
-  </div>
-</div>
-</div>
+                {recentExpenses.length === 0 && (
+                  <tr>
+                    <td colSpan="5" className="no-data">
+                      No recent transactions
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

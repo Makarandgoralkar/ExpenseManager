@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/user")
@@ -69,4 +70,45 @@ public class UserController {
             return ResponseEntity.status(500).body("Failed to delete account");
         }
     }
+
+    @PostMapping("/profile/upload")
+    public ResponseEntity<?> uploadProfilePicture(
+            @RequestHeader("Authorization") String authHeader,
+            @RequestParam("file") MultipartFile file) {
+
+        try {
+            String token = authHeader.replace("Bearer ", "");
+            String email = jwtUtil.getEmailFromToken(token);
+            User user = userService.getUserByEmail(email);
+            if (user == null) return ResponseEntity.badRequest().body("User not found");
+
+            // Convert file to byte array
+            user.setProfilePicture(file.getBytes());
+            userService.saveUser(user);
+
+            return ResponseEntity.ok("Profile picture uploaded successfully");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("Profile picture upload failed");
+        }
+    }
+
+    @GetMapping("/profile/picture")
+    public ResponseEntity<?> getProfilePicture(@RequestHeader("Authorization") String authHeader) {
+        try {
+            String token = authHeader.replace("Bearer ", "");
+            String email = jwtUtil.getEmailFromToken(token);
+            User user = userService.getUserByEmail(email);
+            if (user == null || user.getProfilePicture() == null) return ResponseEntity.notFound().build();
+
+            // Convert byte[] to Base64 string
+            String base64Image = java.util.Base64.getEncoder().encodeToString(user.getProfilePicture());
+            return ResponseEntity.ok(base64Image);
+
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Error fetching profile picture");
+        }
+    }
+
 }
