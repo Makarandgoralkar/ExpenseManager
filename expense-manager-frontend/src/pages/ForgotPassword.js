@@ -1,27 +1,22 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import API from "../services/api";
 import "./ForgotPassword.css";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [msg, setMsg] = useState("");
-  const navigate = useNavigate();
+  
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await API.post("/auth/forgot-password", { email });
+  e.preventDefault();
+  try {
+    await API.post("/auth/forgot-password", { email });
+    setMsg("Reset link sent to your email");
+  } catch {
+    setMsg("Email not registered");
+  }
+};
 
-      const token = res.data; // backend returns token string
-
-      // ✅ Navigate to reset password page with token
-      navigate(`/reset-password?token=${token}`);
-
-    } catch {
-      setMsg("Email not registered");
-    }
-  };
 
   return (
     <div className="auth-page">

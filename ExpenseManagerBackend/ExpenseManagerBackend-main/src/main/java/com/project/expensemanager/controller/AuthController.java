@@ -2,9 +2,9 @@ package com.project.expensemanager.controller;
 
 import com.project.expensemanager.dto.AuthRequest;
 import com.project.expensemanager.dto.AuthResponse;
-import com.project.expensemanager.dto.ForgotPasswordRequest;
 import com.project.expensemanager.dto.ResetPasswordRequest;
 import com.project.expensemanager.entity.User;
+import com.project.expensemanager.service.EmailService;
 import com.project.expensemanager.service.UserService;
 import com.project.expensemanager.security.jwt.JwtUtil;
 import io.swagger.v3.oas.annotations.Operation;
@@ -14,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/auth")
 @Tag(name = "Authentication", description = "APIs for user signup and login")
@@ -21,6 +23,10 @@ public class AuthController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private EmailService emailService;
+
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -51,17 +57,26 @@ public class AuthController {
     }
 
     @PostMapping("/forgot-password")
-    public ResponseEntity<?> forgotPassword(@RequestBody ForgotPasswordRequest request) {
+    public ResponseEntity<?> forgotPassword(@RequestBody Map<String, String> request) {
 
-        User user = userService.getUserByEmail(request.getEmail());
+        String email = request.get("email");
+        User user = userService.getUserByEmail(email); // <- change here
+
         if (user == null) {
             return ResponseEntity.badRequest().body("Email not registered");
         }
 
-        String resetToken = jwtUtil.generateResetToken(user.getEmail());
+        String token = jwtUtil.generateResetToken(email);
 
-        // 👉 In real app: send token via email
-        return ResponseEntity.ok(resetToken);
+        String resetLink = "http://localhost:3000/reset-password?token=" + token;
+
+        emailService.sendEmail(
+                email,
+                "Reset Your Password",
+                "Click the link to reset your password:\n" + resetLink
+        );
+
+        return ResponseEntity.ok("Reset link sent to email");
     }
 
     @PostMapping("/reset-password")
