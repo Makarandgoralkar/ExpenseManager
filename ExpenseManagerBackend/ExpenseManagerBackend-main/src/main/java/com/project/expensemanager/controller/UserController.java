@@ -111,4 +111,21 @@ public class UserController {
         }
     }
 
+    @DeleteMapping("/profile/picture")
+    public ResponseEntity<?> deleteProfilePicture(
+            @RequestHeader("Authorization") String authHeader) {
+
+        String token = authHeader.replace("Bearer ", "");
+        String email = jwtUtil.getEmailFromToken(token);
+        User user = userService.getUserByEmail(email);
+
+        if (user == null) return ResponseEntity.badRequest().body("User not found");
+
+        user.setProfilePicture(null);
+        userService.saveUser(user);
+
+        return ResponseEntity.ok("Profile picture removed");
+    }
+
+
 }

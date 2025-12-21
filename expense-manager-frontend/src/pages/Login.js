@@ -74,6 +74,10 @@ function Login() {
               {showPassword ? "🙈" : "👁️"}
             </span>
           </div>
+          <p className="forgot-link" onClick={() => window.location.href="/forgot-password"}>
+          Forgot Password?
+          </p>
+
           <button type="submit" className="primary-btn">Login</button>
         </form>
 

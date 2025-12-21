@@ -1,63 +1,67 @@
-// src/pages/DayView.js
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import API from "../services/api";
 import "./Day.css";
 
 function Day() {
+  const { date } = useParams();
+  const navigate = useNavigate();
+
   const [currentDate, setCurrentDate] = useState(new Date());
   const [transactions, setTransactions] = useState([]);
   const [summary, setSummary] = useState({ totalIncome: 0, totalExpense: 0 });
-  const navigate = useNavigate();
 
-  const fetchTransactions = async (date) => {
+  const fetchTransactions = async (dateStr) => {
     try {
-      const res = await API.get(`/expenses/date/${date}`);
+      const res = await API.get(`/expenses/date/${dateStr}`);
       setTransactions(res.data);
 
-      // Calculate total income and expense
       let income = 0;
       let expense = 0;
       res.data.forEach((t) => {
         if (t.type.toLowerCase() === "income") income += t.amount;
         else expense += t.amount;
       });
+
       setSummary({ totalIncome: income, totalExpense: expense });
-    } catch (err) {
-      console.error("Failed to fetch day transactions", err);
+    } catch {
       setTransactions([]);
       setSummary({ totalIncome: 0, totalExpense: 0 });
     }
   };
 
+  // 🔥 React to URL change
   useEffect(() => {
-    const dateStr = currentDate.toISOString().split("T")[0];
-    fetchTransactions(dateStr);
-  }, [currentDate]);
+    if (!date) return;
 
+    const parsedDate = new Date(date);
+    setCurrentDate(parsedDate);
+    fetchTransactions(date);
+  }, [date]);
+
+  // 🔥 Update URL (NOT state)
   const changeDate = (direction) => {
     const newDate = new Date(currentDate);
     newDate.setDate(newDate.getDate() + direction);
-    setCurrentDate(newDate);
+
+    const formatted = newDate.toISOString().split("T")[0];
+    navigate(`/day/${formatted}`);
   };
 
   const getHeaderLabel = () => currentDate.toDateString();
-
   const balance = summary.totalIncome - summary.totalExpense;
 
   return (
     <>
       <Navbar />
       <div className="dayview-container">
-        {/* Date Navigation */}
         <div className="filter-navigation">
           <button onClick={() => changeDate(-1)}>◀</button>
           <span>{getHeaderLabel()}</span>
           <button onClick={() => changeDate(1)}>▶</button>
         </div>
 
-        {/* Summary Cards */}
         <div className="summary-cards">
           <div className="card income">
             <h4>Income</h4>
@@ -73,8 +77,8 @@ function Day() {
           </div>
         </div>
 
-        {/* Transactions Table */}
         <h2 className="title">Transactions</h2>
+
         {transactions.length === 0 ? (
           <p className="no-transactions">No transactions for this day.</p>
         ) : (
@@ -91,19 +95,19 @@ function Day() {
               </thead>
               <tbody>
                 {transactions.map((t) => (
-                    <tr
+                  <tr
                     key={t.id}
                     className="click-row"
                     onClick={() => navigate(`/edit/${t.id}`)}
-                    >
+                  >
                     <td>{t.title}</td>
                     <td>₹{t.amount}</td>
                     <td>{t.category}</td>
                     <td>{t.type}</td>
                     <td>{t.date}</td>
-                    </tr>
+                  </tr>
                 ))}
-            </tbody>
+              </tbody>
             </table>
           </div>
         )}

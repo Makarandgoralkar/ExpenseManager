@@ -164,3 +164,11 @@
 .eye-icon:hover {
   opacity: 1;
 }
+
+.forgot-link {
+  font-size: 13px;
+  color: #58a6ff;
+  cursor: pointer;
+  text-align: right;
+  margin-bottom: 10px;
+}

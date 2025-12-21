@@ -2,6 +2,8 @@ package com.project.expensemanager.controller;
 
 import com.project.expensemanager.dto.AuthRequest;
 import com.project.expensemanager.dto.AuthResponse;
+import com.project.expensemanager.dto.ForgotPasswordRequest;
+import com.project.expensemanager.dto.ResetPasswordRequest;
 import com.project.expensemanager.entity.User;
 import com.project.expensemanager.service.UserService;
 import com.project.expensemanager.security.jwt.JwtUtil;
@@ -47,4 +49,34 @@ public class AuthController {
         String token = jwtUtil.generateToken(user.getEmail());
         return ResponseEntity.ok(new AuthResponse(token));
     }
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<?> forgotPassword(@RequestBody ForgotPasswordRequest request) {
+
+        User user = userService.getUserByEmail(request.getEmail());
+        if (user == null) {
+            return ResponseEntity.badRequest().body("Email not registered");
+        }
+
+        String resetToken = jwtUtil.generateResetToken(user.getEmail());
+
+        // 👉 In real app: send token via email
+        return ResponseEntity.ok(resetToken);
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<?> resetPassword(@RequestBody ResetPasswordRequest request) {
+
+        String email = jwtUtil.getEmailFromToken(request.getToken());
+        if (email == null) {
+            return ResponseEntity.badRequest().body("Invalid or expired token");
+        }
+
+        User user = userService.getUserByEmail(email);
+        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        userService.saveUser(user);
+
+        return ResponseEntity.ok("Password reset successful");
+    }
+
 }

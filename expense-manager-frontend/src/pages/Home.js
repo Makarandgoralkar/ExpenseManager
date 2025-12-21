@@ -103,7 +103,7 @@ function Home() {
               {userName.charAt(0).toUpperCase()}
             </div>
           )}
-          <span className="home-profile-name">{userName}</span>
+          {/* <span className="home-profile-name">{userName}</span> */}
         </div>
       </div>
 

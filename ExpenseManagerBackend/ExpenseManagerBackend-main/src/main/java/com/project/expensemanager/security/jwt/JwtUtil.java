@@ -39,4 +39,14 @@ public class JwtUtil {
             return false;
         }
     }
+
+    public String generateResetToken(String email) {
+        return Jwts.builder()
+                .setSubject(email)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + 15 * 60 * 1000)) // 15 mins
+                .signWith(SignatureAlgorithm.HS256, secret)
+                .compact();
+    }
+
 }

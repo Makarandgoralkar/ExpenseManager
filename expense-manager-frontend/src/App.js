@@ -14,6 +14,8 @@ import About from "./pages/About";
 import Day from "./pages/Day";
 import Calendar from "./pages/Calendar";
 import GoPremium from "./pages/GoPremium";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   return (
@@ -35,6 +37,9 @@ function App() {
         <Route path="/day" element={<Day />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/goPremium" element={<GoPremium />} />
+        <Route path="/day/:date" element={<Day />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
       </Routes>
     </Router>
   );

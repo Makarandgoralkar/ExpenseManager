@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Navbar from "../components/Navbar";
 import API from "../services/api";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaTrash } from "react-icons/fa";
 import "./Profile.css";
 
 function Profile() {
@@ -15,7 +15,9 @@ function Profile() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState("");
 
-  // Fetch user profile + image
+  const fileInputRef = useRef(null);
+
+  // Fetch profile + image
   const fetchProfile = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -25,7 +27,6 @@ function Profile() {
       });
       setUser({ ...res.data, password: "" });
 
-      // fetch profile picture
       const imgRes = await API.get("/user/profile/picture", {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -33,8 +34,8 @@ function Profile() {
       if (imgRes.data) {
         setPreview(`data:image/jpeg;base64,${imgRes.data}`);
       }
-    } catch (error) {
-      console.log("No profile picture yet");
+    } catch {
+      setPreview("");
     }
   };
 
@@ -47,8 +48,26 @@ function Profile() {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
+    if (!file) return;
+
     setSelectedFile(file);
     setPreview(URL.createObjectURL(file));
+  };
+
+  const handleRemovePhoto = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      await API.delete("/user/profile/picture", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      setPreview("");
+      setSelectedFile(null);
+      alert("Profile photo removed");
+    } catch {
+      alert("Failed to remove photo");
+    }
   };
 
   const handleUpdate = async (e) => {
@@ -56,27 +75,22 @@ function Profile() {
     try {
       const token = localStorage.getItem("token");
 
-      // update profile
       await API.put("/user/profile", user, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      // upload picture
       if (selectedFile) {
         const formData = new FormData();
         formData.append("file", selectedFile);
 
         await API.post("/user/profile/upload", formData, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
-          },
+          headers: { Authorization: `Bearer ${token}` },
         });
       }
 
       alert("Profile updated successfully!");
       fetchProfile();
-    } catch (error) {
+    } catch {
       alert("Profile update failed");
     }
   };
@@ -88,7 +102,11 @@ function Profile() {
         <h2>User Profile</h2>
 
         {/* PROFILE IMAGE */}
-        <div className="profile-image-wrapper">
+        <div
+          className="profile-image-wrapper"
+          onClick={() => fileInputRef.current.click()}
+          title="Click to upload photo"
+        >
           {preview ? (
             <img src={preview} alt="Profile" className="profile-preview" />
           ) : (
@@ -97,6 +115,21 @@ function Profile() {
             </div>
           )}
         </div>
+
+        {/* Hidden File Input */}
+        <input
+          type="file"
+          accept="image/*"
+          ref={fileInputRef}
+          style={{ display: "none" }}
+          onChange={handleFileChange}
+        />
+
+        {preview && (
+          <button className="remove-photo-btn" onClick={handleRemovePhoto}>
+            <FaTrash /> Remove Photo
+          </button>
+        )}
 
         <form className="profile-form" onSubmit={handleUpdate}>
           <label>Name</label>
@@ -114,13 +147,13 @@ function Profile() {
               onChange={handleChange}
               placeholder="Change password (optional)"
             />
-            <span onClick={() => setShowPassword(!showPassword)} className="eye-icon">
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              className="eye-icon"
+            >
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
           </div>
-
-          <label>Profile Picture</label>
-          <input type="file" accept="image/*" onChange={handleFileChange} />
 
           <button className="update-btn">Update Profile</button>
         </form>
