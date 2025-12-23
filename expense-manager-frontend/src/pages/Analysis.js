@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import API from "../services/api";
 import {
   PieChart,
@@ -202,6 +203,7 @@ function Analysis() {
           </>
         )}
       </div>
+      <Footer />
     </>
   );
 }

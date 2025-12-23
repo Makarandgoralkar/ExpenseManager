@@ -1,9 +1,19 @@
-/* src/pages/GoPremium.css */
+/* Sticky footer layout */
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
+.content-wrap {
+  flex: 1;
+}
+
+/* Main container */
 .page-container {
   max-width: 900px;
   margin: 40px auto;
-  padding: 20px 30px;
+  padding: 30px 40px;
   text-align: center;
   background: #f9f9f9;
   border-radius: 12px;
@@ -22,6 +32,7 @@
   color: #555;
 }
 
+/* Upgrade button */
 .upgrade-button {
   padding: 12px 30px;
   font-size: 1rem;
@@ -51,7 +62,7 @@
 .feature-card {
   background: #fff;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 12px;
   box-shadow: 0 3px 10px rgba(0,0,0,0.1);
   transition: all 0.3s ease;
 }
@@ -70,4 +81,14 @@
 .feature-card p {
   font-size: 0.95rem;
   color: #666;
+}
+
+/* Footer adjustments (if needed) */
+.footer {
+  background-color: #f8f9fa;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+  border-top: 1px solid #ddd;
 }

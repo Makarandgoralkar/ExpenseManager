@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import API from "../services/api";
 import "./Home.css";
@@ -190,6 +191,7 @@ function Home() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

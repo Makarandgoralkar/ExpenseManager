@@ -1,7 +1,19 @@
+/* Sticky footer layout */
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-wrap {
+  flex: 1;
+  padding: 20px 0;
+}
+
 .settings-wrapper {
   max-width: 800px;
   margin: 40px auto;
-  padding: 20px;
+  padding: 0 20px;
 }
 
 .settings-title {
@@ -17,6 +29,11 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   margin-bottom: 25px;
   transition: 0.3s;
+}
+
+.settings-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
 
 .settings-header {
@@ -57,7 +74,7 @@
   font-size: 16px;
 }
 
-/* TOGGLE SWITCH */
+/* Toggle Switch */
 .switch {
   position: relative;
   width: 48px;
@@ -108,6 +125,7 @@ input:checked + .slider:before {
   display: flex;
   align-items: center;
   gap: 8px;
+  font-weight: 500;
 }
 
 .delete-account-btn:hover {

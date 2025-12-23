@@ -76,7 +76,6 @@
   background: #357ab8;
 }
 
-/* SOCIAL BUTTONS */
 .social {
   width: 100%;
   padding: 12px;
@@ -86,10 +85,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 10px; /* space between icon and text */
   cursor: pointer;
   border: none;
 }
+
 
 .social img {
   width: 22px;
@@ -157,7 +157,7 @@
   top: 40%;
   transform: translateY(-50%);
   cursor: pointer;
-  font-size: 18px;
+  font-size: 18px; /* matches react-icons size */
   opacity: 0.7;
 }
 

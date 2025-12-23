@@ -1,9 +1,23 @@
-.profile-dashboard-container {
-  width: 90%;
-  margin: 40px auto;
-  padding: 20px;
+/* Sticky footer layout */
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
+.content-wrap {
+  flex: 1;
+  padding: 20px 0;
+}
+
+/* Profile Dashboard Container */
+.profile-dashboard-container {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Profile Header */
 .profile-header-card {
   display: flex;
   align-items: center;
@@ -27,6 +41,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .profile-info h2 {
@@ -58,16 +79,21 @@
   cursor: pointer;
   transition: 0.3s;
   font-weight: bold;
+  text-align: center;
+}
+
+.option-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 .option-card span {
   margin-top: 10px;
   font-size: 14px;
-  text-align: center;
 }
 
 .options-title {
-  grid-column: 1 / -1; /* full width */
+  grid-column: 1 / -1;
   font-size: 18px;
   font-weight: bold;
   color: #333;
@@ -75,9 +101,19 @@
   padding-left: 5px;
 }
 
-.profile-image img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
+/* Responsive */
+@media (max-width: 600px) {
+  .profile-header-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .profile-info h2 {
+    font-size: 24px;
+  }
+
+  .profile-info p {
+    font-size: 14px;
+  }
 }

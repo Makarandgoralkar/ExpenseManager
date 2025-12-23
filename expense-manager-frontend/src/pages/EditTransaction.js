@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import API from "../services/api";
 import "./EditTransaction.css";
 
@@ -126,6 +127,7 @@ function EditTransaction() {
           </button>
         </form>
       </div>
+      <Footer />
     </>
   );
 }

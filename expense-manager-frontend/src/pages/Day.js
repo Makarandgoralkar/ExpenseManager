@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import API from "../services/api";
 import "./Day.css";
 
@@ -8,7 +9,9 @@ function Day() {
   const { date } = useParams();
   const navigate = useNavigate();
 
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const [currentDate, setCurrentDate] = useState(
+    date ? new Date(date) : new Date()
+  );
   const [transactions, setTransactions] = useState([]);
   const [summary, setSummary] = useState({ totalIncome: 0, totalExpense: 0 });
 
@@ -23,7 +26,6 @@ function Day() {
         if (t.type.toLowerCase() === "income") income += t.amount;
         else expense += t.amount;
       });
-
       setSummary({ totalIncome: income, totalExpense: expense });
     } catch {
       setTransactions([]);
@@ -31,22 +33,15 @@ function Day() {
     }
   };
 
-  // 🔥 React to URL change
   useEffect(() => {
-    if (!date) return;
+    const dateStr = currentDate.toISOString().split("T")[0];
+    fetchTransactions(dateStr);
+  }, [currentDate]);
 
-    const parsedDate = new Date(date);
-    setCurrentDate(parsedDate);
-    fetchTransactions(date);
-  }, [date]);
-
-  // 🔥 Update URL (NOT state)
   const changeDate = (direction) => {
     const newDate = new Date(currentDate);
     newDate.setDate(newDate.getDate() + direction);
-
-    const formatted = newDate.toISOString().split("T")[0];
-    navigate(`/day/${formatted}`);
+    setCurrentDate(newDate);
   };
 
   const getHeaderLabel = () => currentDate.toDateString();
@@ -56,12 +51,14 @@ function Day() {
     <>
       <Navbar />
       <div className="dayview-container">
+        {/* Date Navigation */}
         <div className="filter-navigation">
           <button onClick={() => changeDate(-1)}>◀</button>
           <span>{getHeaderLabel()}</span>
           <button onClick={() => changeDate(1)}>▶</button>
         </div>
 
+        {/* Summary Cards */}
         <div className="summary-cards">
           <div className="card income">
             <h4>Income</h4>
@@ -77,8 +74,8 @@ function Day() {
           </div>
         </div>
 
+        {/* Transactions */}
         <h2 className="title">Transactions</h2>
-
         {transactions.length === 0 ? (
           <p className="no-transactions">No transactions for this day.</p>
         ) : (
@@ -112,6 +109,7 @@ function Day() {
           </div>
         )}
       </div>
+      <Footer />
     </>
   );
 }

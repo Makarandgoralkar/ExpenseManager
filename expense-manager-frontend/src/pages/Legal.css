@@ -1,0 +1,52 @@
+/* Uses Home page layout */
+.legal-box {
+  text-align: left;
+}
+
+/* Main title */
+.legal-title {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #007bff;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+/* Section headings */
+.legal-box h3 {
+  margin-top: 28px;
+  margin-bottom: 10px;
+  color: #222;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* Paragraphs & list items */
+.legal-box p,
+.legal-box li {
+  color: #555;
+  line-height: 1.8;
+  font-size: 16.5px; /* 🔥 key change */
+}
+
+/* Lists */
+.legal-box ul {
+  padding-left: 22px;
+  margin-top: 8px;
+}
+
+/* Mobile friendly */
+@media (max-width: 768px) {
+  .legal-title {
+    font-size: 26px;
+  }
+
+  .legal-box h3 {
+    font-size: 20px;
+  }
+
+  .legal-box p,
+  .legal-box li {
+    font-size: 15.5px;
+  }
+}

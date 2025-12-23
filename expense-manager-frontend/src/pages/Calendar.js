@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import API from "../services/api";
 import "./Calendar.css";
 
@@ -98,7 +99,9 @@ function Calendar() {
           })}
         </div>
       </div>
+      <Footer />
     </>
+    
   );
 }
 

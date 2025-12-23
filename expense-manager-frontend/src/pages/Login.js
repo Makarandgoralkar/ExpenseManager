@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import API from "../services/api";
 import { saveToken } from "../utils/auth.js";
+import { FaEye, FaEyeSlash, FaGoogle, FaFacebook, FaLinkedin } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import "./Auth.css";
-// import logo from "../assets/logo.png"; // optional logo
 
 function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate(); // useNavigate hook
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -16,9 +18,8 @@ function Login() {
     try {
       const res = await API.post("/auth/login", form);
       saveToken(res.data.token);
-      window.location.href = "/home"; // redirect after successful login
+      navigate("/home", { replace: true }); // use replace to prevent back navigation
     } catch (err) {
-      // Show alert if login fails
       alert("Invalid username or password!");
     }
   };
@@ -37,18 +38,13 @@ function Login() {
 
   return (
     <div className="auth-page">
-
-      {/* Top Logo + Heading */}
       <div className="app-header">
-        {/* <img src={logo} className="app-logo" alt="logo" /> */}
         <h1 className="app-title">Expenses Manager</h1>
         <p className="app-tagline">Privacy First. Your Data. Your Device.</p>
       </div>
 
-      {/* Glass Card */}
       <div className="auth-card">
         <h2>Login</h2>
-
         <form onSubmit={handleSubmit}>
           <input
             name="email"
@@ -57,7 +53,7 @@ function Login() {
             onChange={handleChange}
             autoComplete="off"
           />
-          {/* PASSWORD WITH EYE */}
+
           <div className="password-wrapper">
             <input
               name="password"
@@ -67,15 +63,13 @@ function Login() {
               onChange={handleChange}
               autoComplete="new-password"
             />
-            <span
-              className="eye-icon"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? "🙈" : "👁️"}
+            <span className="eye-icon" onClick={() => setShowPassword(!showPassword)}>
+              {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
             </span>
           </div>
-          <p className="forgot-link" onClick={() => window.location.href="/forgot-password"}>
-          Forgot Password?
+
+          <p className="forgot-link" onClick={() => navigate("/forgot-password", { replace: true })}>
+            Forgot Password?
           </p>
 
           <button type="submit" className="primary-btn">Login</button>
@@ -83,20 +77,20 @@ function Login() {
 
         <div className="divider">Or continue with</div>
 
-        <button className="social google" onClick={handleGoogleLogin}>
-          Continue with Google
-        </button>
-
-        <button className="social facebook" onClick={handleFacebookLogin}>
-          Continue with Facebook
-        </button>
-
-        <button className="social linkedin" onClick={handleLinkedInLogin}>
-          Continue with LinkedIn
-        </button>
+        <div className="social-buttons">
+          <button className="social google" onClick={handleGoogleLogin}>
+            <FaGoogle size={20} style={{ marginRight: "8px" }} /> Continue with Google
+          </button>
+          <button className="social facebook" onClick={handleFacebookLogin}>
+            <FaFacebook size={20} style={{ marginRight: "8px" }} /> Continue with Facebook
+          </button>
+          <button className="social linkedin" onClick={handleLinkedInLogin}>
+            <FaLinkedin size={20} style={{ marginRight: "8px" }} /> Continue with LinkedIn
+          </button>
+        </div>
 
         <p className="switch-page">
-          Don’t have an account? <a href="/signup">Signup</a>
+          Don’t have an account? <span onClick={() => navigate("/signup", { replace: true })}>Signup</span>
         </p>
       </div>
     </div>

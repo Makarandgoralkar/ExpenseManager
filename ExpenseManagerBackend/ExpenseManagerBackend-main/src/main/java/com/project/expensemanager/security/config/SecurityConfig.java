@@ -1,7 +1,9 @@
 package com.project.expensemanager.security.config;
 
 import com.project.expensemanager.security.jwt.JwtFilter;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.project.expensemanager.security.jwt.JwtUtil;
+import com.project.expensemanager.security.oauth.OAuth2SuccessHandler;
+import com.project.expensemanager.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -21,19 +23,35 @@ import java.util.List;
 @Configuration
 public class SecurityConfig {
 
-    @Autowired
-    private JwtFilter jwtFilter;
+    private final JwtUtil jwtUtil;
+    private final UserService userService;
+    private final JwtFilter jwtFilter;
 
+    public SecurityConfig(JwtUtil jwtUtil, UserService userService, JwtFilter jwtFilter) {
+        this.jwtUtil = jwtUtil;
+        this.userService = userService;
+        this.jwtFilter = jwtFilter;
+    }
+
+    // Password encoder bean
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    // OAuth2SuccessHandler bean with proper arguments
+    @Bean
+    public OAuth2SuccessHandler oAuth2SuccessHandler() {
+        return new OAuth2SuccessHandler(jwtUtil, userService, passwordEncoder());
+    }
+
+    // Authentication manager bean
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
 
+    // Security filter chain
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -44,21 +62,27 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
                         // Allow Swagger endpoints
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
-
+                        // Protected endpoint example
                         .requestMatchers(HttpMethod.DELETE, "/api/user/delete").authenticated()
-                        // All other requests need authentication
+                        // OAuth2 endpoints
+                        .requestMatchers("/oauth2/**", "/login/**").permitAll()
+                        // All other requests require authentication
                         .anyRequest().authenticated()
+                )
+                .oauth2Login(oauth -> oauth
+                        .successHandler(oAuth2SuccessHandler())
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
 
+    // CORS configuration
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(List.of("http://localhost:3000")); // frontend URL
+        config.setAllowedOrigins(List.of("http://localhost:3000"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setExposedHeaders(List.of("Authorization"));
