@@ -1,0 +1,129 @@
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.scheduled-container {
+  width: 95%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  background-color: #f9fafb;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.scheduled-container h2 {
+  text-align: center;
+  color: #1e40af;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+.add-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #2563eb;
+  color: white;
+  border-radius: 8px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 25px;
+  transition: all 0.3s;
+}
+
+.add-btn:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+.transaction-section {
+  margin-top: 30px;
+}
+
+.transaction-section h3 {
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+.transaction-section:first-child h3 {
+  color: #059669; /* Green for upcoming */
+}
+
+.transaction-section:last-child h3 {
+  color: #6b7280; /* Gray for completed */
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.transactions-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.transactions-table th,
+.transactions-table td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.transactions-table th {
+  background-color: #3b82f6;
+  color: white;
+  font-weight: 600;
+}
+
+.transactions-table tr:nth-child(even) {
+  background-color: #f3f4f6;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.action-buttons button {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.edit-btn {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #2563eb;
+}
+
+.complete-btn {
+  background-color: #10b981;
+  color: white;
+}
+
+.complete-btn:hover {
+  background-color: #059669;
+}
+
+.delete-btn {
+  background-color: #ef4444;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #b91c1c;
+}

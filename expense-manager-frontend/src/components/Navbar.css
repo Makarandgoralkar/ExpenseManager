@@ -30,16 +30,23 @@
 }
 
 .add-btn a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;      /* fixed width */
+  height: 36px;     /* fixed height */
   background: #007bff;
-  padding: 8px 10px;
-  border-radius: 50%;
+  border-radius: 20%;
   color: white;
-  font-size: 16px;
+  font-size: 10px;   /* slightly bigger for + icon */
+  text-decoration: none;
+  transition: background 0.2s;
 }
 
 .add-btn a:hover {
   background: #0056b3;
 }
+
 
 .more-menu {
   position: relative;

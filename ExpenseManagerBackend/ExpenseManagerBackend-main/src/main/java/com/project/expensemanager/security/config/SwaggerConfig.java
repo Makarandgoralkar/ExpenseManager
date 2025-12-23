@@ -15,7 +15,7 @@ public class SwaggerConfig {
                         .description("Backend API documentation for Expense Manager")
                         .version("1.0"))
                 .externalDocs(new ExternalDocumentation()
-                        .description("Expense Manager Backend Repo")
+                        .description("Expense Manager Backend Repository")
                         .url("https://github.com/Makarandgoralkar/ExpenseManager.git"));
     }
 }

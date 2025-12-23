@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import API from "../services/api";
@@ -14,8 +12,8 @@ function EditTransaction() {
   const [form, setForm] = useState({
     title: "",
     amount: "",
-    category: "",
-    type: "",
+    category: "OTHER",
+    type: "EXPENSE",
     date: "",
   });
 
@@ -45,7 +43,7 @@ function EditTransaction() {
       navigate("/transactions");
     } catch (error) {
       console.error("Update failed", error);
-      alert("Update failed.");
+      alert("Update failed!");
     }
   };
 
@@ -53,7 +51,7 @@ function EditTransaction() {
     if (window.confirm("Are you sure you want to delete this transaction?")) {
       try {
         await API.delete(`/expenses/${id}`);
-        alert("Transaction Deleted Successfully!");
+        alert("Transaction deleted successfully!");
         navigate("/transactions");
       } catch (error) {
         console.error("Delete failed", error);
@@ -63,72 +61,70 @@ function EditTransaction() {
   };
 
   return (
-    <>
+    <div className="page-wrapper">
       <Navbar />
-      <div className="edit-container">
-        <FontAwesomeIcon
-          icon={faTrash}
-          className="delete-icon"
-          onClick={handleDelete}
-        />
+      <div className="content-wrap">
+        <div className="add-transaction-container">
+          <form className="add-transaction-form" onSubmit={handleSubmit}>
+            <h2>Edit Transaction</h2>
 
-        <h2>Edit Transaction</h2>
-        <form className="edit-form" onSubmit={handleSubmit}>
-          <label>Title</label>
-          <input
-            type="text"
-            name="title"
-            value={form.title}
-            onChange={handleChange}
-            required
-          />
+            <input
+              name="title"
+              placeholder="Title"
+              value={form.title}
+              onChange={handleChange}
+              required
+            />
 
-          <label>Amount</label>
-          <input
-            type="number"
-            name="amount"
-            value={form.amount}
-            onChange={handleChange}
-            required
-          />
+            <input
+              name="amount"
+              type="number"
+              placeholder="Amount"
+              value={form.amount}
+              onChange={handleChange}
+              required
+            />
 
-          <label>Category</label>
-          <input
-            type="text"
-            name="category"
-            value={form.category}
-            onChange={handleChange}
-            required
-          />
+            <select name="category" value={form.category} onChange={handleChange}>
+              <option value="FOOD">Food</option>
+              <option value="TRAVEL">Travel</option>
+              <option value="BILLS">Bills</option>
+              <option value="ENTERTAINMENT">Entertainment</option>
+              <option value="SHOPPING">Shopping</option>
+              <option value="MEDICAL">Medical</option>
+              <option value="EDUCATION">Education</option>
+              <option value="RENT">Rent</option>
+              <option value="OTHER">Other</option>
+            </select>
 
-          <label>Type</label>
-          <select
-            name="type"
-            value={form.type}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select Type</option>
-            <option value="INCOME">Income</option>
-            <option value="EXPENSE">Expense</option>
-          </select>
+            <select name="type" value={form.type} onChange={handleChange}>
+              <option value="INCOME">Income</option>
+              <option value="EXPENSE">Expense</option>
+            </select>
 
-          <label>Date</label>
-          <input
-            type="date"
-            name="date"
-            value={form.date}
-            onChange={handleChange}
-            required
-          />
+            <input
+              type="date"
+              name="date"
+              value={form.date}
+              onChange={handleChange}
+              required
+            />
 
-          <button type="submit" className="update-btn">
-            Update Transaction
-          </button>
-        </form>
+            <div style={{ display: "flex", justifyContent: "space-between", gap: "10px" }}>
+              <button type="submit">Update</button>
+              <button
+                type="button"
+                onClick={handleDelete}
+                style={{ background: "#dc3545" }}
+              >
+                Delete
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
 

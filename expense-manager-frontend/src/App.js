@@ -22,6 +22,10 @@ import OAuth2Success from "./pages/OAuth2Success";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 
+import ScheduledTransactions from "./pages/ScheduledTransactions";
+import AddScheduledTransaction from "./pages/AddScheduledTransaction";
+import EditScheduledTransaction from "./pages/EditScheduledTransaction";
+
 function App() {
   return (
     <Router>
@@ -146,6 +150,32 @@ function App() {
           element={
             <ProtectedRoute>
               <Day />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Scheduled Transactions */}
+        <Route
+          path="/scheduled-transactions"
+          element={
+            <ProtectedRoute>
+              <ScheduledTransactions />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/add-scheduled-transaction"
+          element={
+            <ProtectedRoute>
+              <AddScheduledTransaction />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/edit-scheduled/:id"
+          element={
+            <ProtectedRoute>
+              <EditScheduledTransaction />
             </ProtectedRoute>
           }
         />
