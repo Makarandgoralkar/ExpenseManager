@@ -42,21 +42,19 @@ function About() {
           </div>
 
           <div className="about-card">
-  <h2>Follow Us</h2>
-  <p className="social-icons">
-    <a href="https://my-portfolio-ca78f.web.app/" target="_blank" rel="noopener noreferrer">
-      <FaGlobe size={32} />
-    </a>
-    <a href="https://www.linkedin.com/in/makarand-goralkar-505788258/" target="_blank" rel="noopener noreferrer">
-      <FaLinkedin size={32} />
-    </a>
-    <a href="https://github.com/Makarandgoralkar" target="_blank" rel="noopener noreferrer">
-      <FaGithub size={32} />
-    </a>
-  </p>
-</div>
-
-
+            <h2>Follow Us</h2>
+            <p className="social-icons"> 
+              <a href="https://my-portfolio-ca78f.web.app/" target="_blank" rel="noopener noreferrer"> 
+              <FaGlobe size={32} /> 
+              </a> 
+              <a href="https://www.linkedin.com/in/makarand-goralkar-505788258/" target="_blank" rel="noopener noreferrer"> 
+              <FaLinkedin size={32} /> 
+              </a> 
+              <a href="https://github.com/Makarandgoralkar" target="_blank" rel="noopener noreferrer"> 
+              <FaGithub size={32} /> 
+              </a> 
+            </p>
+          </div>
         </div>
       </div>
       <Footer />
