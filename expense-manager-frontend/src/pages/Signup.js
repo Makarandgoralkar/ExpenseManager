@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import API from "../services/api";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/expense_manager_logo.png";
 import "./Auth.css";
 
 function Signup() {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [message, setMessage] = useState("");
-  const navigate = useNavigate(); // useNavigate hook
+  const navigate = useNavigate();
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -19,7 +20,7 @@ function Signup() {
       await API.post("/auth/signup", form);
       setMessage("Signup successful! Redirecting to login...");
       setForm({ name: "", email: "", password: "" });
-      setTimeout(() => navigate("/login", { replace: true }), 1500); // redirect after 1.5s
+      setTimeout(() => navigate("/login", { replace: true }), 1500);
     } catch {
       setMessage("Email already exists!");
     }
@@ -27,16 +28,39 @@ function Signup() {
 
   return (
     <div className="auth-page">
+      {/* HEADER */}
       <div className="app-header">
-        <h1 className="app-title">Expenses Manager</h1>
+        <div className="app-brand">
+          <img
+            src={logo}
+            alt="Expense Manager Logo"
+            className="app-logo"
+          />
+          <h1 className="app-title">Expense Manager</h1>
+        </div>
         <p className="app-tagline">Track smarter. Spend better.</p>
       </div>
 
+      {/* CARD */}
       <div className="auth-card">
         <h2>Signup</h2>
+
         <form onSubmit={handleSubmit}>
-          <input name="name" placeholder="Name" value={form.name} onChange={handleChange} autoComplete="off" />
-          <input name="email" placeholder="Email" value={form.email} onChange={handleChange} autoComplete="off" />
+          <input
+            name="name"
+            placeholder="Name"
+            value={form.name}
+            onChange={handleChange}
+            autoComplete="off"
+          />
+
+          <input
+            name="email"
+            placeholder="Email"
+            value={form.email}
+            onChange={handleChange}
+            autoComplete="off"
+          />
 
           <div className="password-wrapper">
             <input
@@ -47,18 +71,26 @@ function Signup() {
               onChange={handleChange}
               autoComplete="new-password"
             />
-            <span className="eye-icon" onClick={() => setShowPassword(!showPassword)}>
+            <span
+              className="eye-icon"
+              onClick={() => setShowPassword(!showPassword)}
+            >
               {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
             </span>
           </div>
 
-          <button type="submit" className="primary-btn">Signup</button>
+          <button type="submit" className="primary-btn">
+            Signup
+          </button>
         </form>
 
         <p className="info-msg">{message}</p>
 
         <p className="switch-page">
-          Already have an account? <span onClick={() => navigate("/login", { replace: true })}>Login</span>
+          Already have an account?{" "}
+          <span onClick={() => navigate("/login", { replace: true })}>
+            Login
+          </span>
         </p>
       </div>
     </div>

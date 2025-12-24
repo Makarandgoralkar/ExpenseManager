@@ -3,6 +3,7 @@ import API from "../services/api";
 import { saveToken } from "../utils/auth.js";
 import { FaEye, FaEyeSlash, FaGoogle, FaFacebook, FaLinkedin } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/expense_manager_logo.png";
 import "./Auth.css";
 
 function Login() {
@@ -39,9 +40,13 @@ function Login() {
   return (
     <div className="auth-page">
       <div className="app-header">
-        <h1 className="app-title">Expenses Manager</h1>
-        <p className="app-tagline">Privacy First. Your Data. Your Device.</p>
-      </div>
+  <div className="app-brand">
+    <img src={logo} alt="Expense Manager Logo" className="app-logo" />
+    <h1 className="app-title">Expense Manager</h1>
+  </div>
+  <p className="app-tagline">Privacy First. Your Data. Your Device.</p>
+</div>
+
 
       <div className="auth-card">
         <h2>Login</h2>
