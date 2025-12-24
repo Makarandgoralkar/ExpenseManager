@@ -2,6 +2,7 @@ package com.project.expensemanager.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "expenses")
@@ -18,6 +19,8 @@ public class Expense {
     private Category category;
 
     private LocalDate date;
+
+    private LocalTime time;
 
     @Enumerated(EnumType.STRING)
     private ExpenseType type;
@@ -40,6 +43,12 @@ public class Expense {
     public void setCategory(Category category) { this.category = category; }
     public LocalDate getDate() { return date; }
     public void setDate(LocalDate date) { this.date = date; }
+
+    public LocalTime getTime() {
+        return time;
+    }
+    public void setTime(LocalTime time) { this.time = time; }
+
     public ExpenseType getType() { return type; }
     public void setType(ExpenseType type) { this.type = type; }
     public User getUser() { return user; }

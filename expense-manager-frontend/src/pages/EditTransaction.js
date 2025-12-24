@@ -15,6 +15,7 @@ function EditTransaction() {
     category: "OTHER",
     type: "EXPENSE",
     date: "",
+    time: "",
   });
 
   // Fetch transaction
@@ -106,6 +107,14 @@ function EditTransaction() {
               type="date"
               name="date"
               value={form.date}
+              onChange={handleChange}
+              required
+            />
+
+            <input
+              type="time"
+              name="time"
+              value={form.time}
               onChange={handleChange}
               required
             />

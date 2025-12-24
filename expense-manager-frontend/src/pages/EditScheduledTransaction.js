@@ -12,6 +12,7 @@ function EditScheduledTransaction() {
     title: "",
     amount: "",
     date: "",
+    time: "",
     frequency: "Daily",
   });
   const [loading, setLoading] = useState(true);
@@ -25,6 +26,7 @@ function EditScheduledTransaction() {
             title: res.data.title || "",
             amount: res.data.amount || "",
             date: res.data.date || "",
+            time: res.data.time?.substring(0, 5) || "",
             frequency: res.data.frequency || "Daily",
           });
         }
@@ -100,6 +102,14 @@ function EditScheduledTransaction() {
               type="date"
               name="date"
               value={transaction.date}
+              onChange={handleChange}
+              required
+            />
+
+            <input
+              type="time"
+              name="time"
+              value={transaction.time}
               onChange={handleChange}
               required
             />

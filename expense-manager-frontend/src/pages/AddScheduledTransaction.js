@@ -7,10 +7,12 @@ import "./ScheduledTransactions.css"; // reuse same CSS
 
 function AddScheduledTransaction() {
   const navigate = useNavigate();
+  const now = new Date();
   const [transaction, setTransaction] = useState({
     title: "",
     amount: "",
-    date: "",
+    date: now.toISOString().split("T")[0],
+    time: now.toTimeString().split(" ")[0].slice(0,5),
     frequency: "Daily",
   });
 
@@ -60,6 +62,14 @@ function AddScheduledTransaction() {
               type="date"
               name="date"
               value={transaction.date}
+              onChange={handleChange}
+              required
+            />
+            
+            <input
+              type="time"
+              name="time"
+              value={transaction.time}
               onChange={handleChange}
               required
             />
