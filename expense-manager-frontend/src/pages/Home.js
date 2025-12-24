@@ -111,14 +111,15 @@ function Home() {
       <div className="home-container">
         {/* Search */}
         <div className="search-wrapper">
-          <i className="fa fa-search"></i>
-          <input
-            type="text"
-            placeholder="Search transactions..."
-            className="search-input"
-            onChange={(e) => handleSearch(e.target.value)}
-          />
-        </div>
+        <i className="fas fa-search search-icon"></i>
+        <input
+          type="text"
+          placeholder="Search transactions..."
+          className="search-input"
+          onChange={(e) => handleSearch(e.target.value)}
+        />
+      </div>
+
 
         {/* Dashboard Cards */}
         <div className="dashboard">

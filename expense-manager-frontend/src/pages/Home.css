@@ -87,11 +87,21 @@ body {
 
 .search-input {
   width: 100%;
-  padding: 12px 12px 12px 40px;
+  padding: 12px 12px 12px 40px; /* padding-left to fit icon */
   font-size: 16px;
   margin-bottom: 20px;
   border-radius: 8px;
   border: 1px solid #ccc;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #888;
+  pointer-events: none; /* ensures clicking the input works normally */
 }
 
 /* Dashboard Cards */
