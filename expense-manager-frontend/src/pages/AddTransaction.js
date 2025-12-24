@@ -7,12 +7,14 @@ import "./AddTransaction.css";
 
 function AddTransaction() { 
   const navigate = useNavigate(); 
+  const now = new Date();
   const [form, setForm] = useState({ 
     title: "", 
     amount: "", 
     category: "OTHER", 
     type: "EXPENSE", 
-    date: "", 
+    date: now.toISOString().split("T")[0],
+    time: now.toTimeString().split(" ")[0].slice(0,5),
   }); 
 
   const handleChange = (e) => { 
@@ -77,6 +79,14 @@ function AddTransaction() {
               type="date" 
               name="date" 
               value={form.date} 
+              onChange={handleChange} 
+              required 
+            /> 
+
+            <input 
+              type="time" 
+              name="time" 
+              value={form.time} 
               onChange={handleChange} 
               required 
             /> 
