@@ -1,75 +1,68 @@
-/* Page wrapper with sticky footer */
-.page-wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background: #f8f9fa;
-}
-
-.content-wrap {
-  flex: 1;
-}
-
-/* Container for form */
-.add-transaction-container {
-  display: flex;
-  justify-content: center;
-  padding: 40px 20px;
-}
-
-/* Form styling */
+/* Container */
 .add-transaction-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  background: white;
-  width: 400px;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-  transition: 0.3s;
-}
-
-.add-transaction-form:hover {
-  transform: translateY(-2px);
+  max-width: 400px; /* reduce width */
+  margin: 40px auto;
+  padding: 15px; /* reduce padding */
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 /* Form title */
 .add-transaction-form h2 {
   text-align: center;
-  margin-bottom: 25px;
-  color: #007bff;
+  font-size: 22px; /* smaller font */
+  margin-bottom: 15px; /* less spacing */
 }
 
-/* Inputs, selects, button */
+/* Inputs and dropdowns */
 .add-transaction-form input,
-.add-transaction-form select {
-  padding: 12px;
-  border-radius: 8px;
+.add-transaction-form select,
+.dropdown-selected {
+  padding: 8px; /* smaller padding */
+  font-size: 13px; /* smaller text */
+  border-radius: 6px;
   border: 1px solid #ccc;
-  font-size: 15px;
-  transition: 0.3s;
+  margin-bottom: 8px; /* less spacing */
 }
 
-.add-transaction-form input:focus,
-.add-transaction-form select:focus {
-  border-color: #007bff;
-  outline: none;
-}
-
-/* Submit button */
-.add-transaction-form button {
-  padding: 12px;
+/* Dropdown menu */
+.dropdown-menu {
+  top: 100%; /* closer to the field */
   border-radius: 8px;
+}
+
+/* Dropdown items */
+.dropdown-item {
+  padding: 5px 8px; /* smaller padding */
+  font-size: 13px;
+  gap: 6px;
+}
+
+/* Buttons */
+.add-transaction-form button {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 6px;
+  background-color: #007bff;
+  color: #fff;
   border: none;
-  background: #007bff;
-  color: white;
-  font-weight: 500;
   cursor: pointer;
-  transition: 0.3s;
 }
 
 .add-transaction-form button:hover {
-  background: #0056b3;
-  transform: translateY(-2px);
+  background-color: #0056b3;
+}
+
+/* Labels */
+.dropdown-label {
+  font-size: 12px; /* smaller label font */
+  margin-bottom: 2px;
+}
+
+/* Reduce spacing for the form fields */
+.add-transaction-form input,
+.add-transaction-form select {
+  margin-bottom: 8px;
 }

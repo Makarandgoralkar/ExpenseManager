@@ -3,6 +3,20 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import API from "../services/api";
+import {
+  FaUtensils,
+  FaPlane,
+  FaFileInvoice,
+  FaFilm,
+  FaShoppingCart,
+  FaHeartbeat,
+  FaGraduationCap,
+  FaHome,
+  FaBox,
+  FaArrowUp,
+  FaArrowDown,
+  FaSearch, 
+} from "react-icons/fa";
 import "./Home.css";
 
 function Home() {
@@ -14,7 +28,6 @@ function Home() {
 
   const navigate = useNavigate();
 
-  // Fetch expenses + summary
   const fetchData = async () => {
     const expensesRes = await API.get("/expenses");
     setExpenses(expensesRes.data);
@@ -23,7 +36,6 @@ function Home() {
     setSummary(summaryRes.data);
   };
 
-  // Fetch user profile
   const fetchUserProfile = async () => {
     try {
       const res = await API.get("/user/profile");
@@ -33,17 +45,15 @@ function Home() {
     }
   };
 
-  // Fetch profile picture
   const fetchProfilePicture = async () => {
     try {
       const res = await API.get("/user/profile/picture");
-      setProfilePic(res.data); // base64
+      setProfilePic(res.data);
     } catch {
       setProfilePic(null);
     }
   };
 
-  // Greeting logic
   const getGreeting = useCallback(() => {
     const hour = new Date().getHours();
     if (hour >= 5 && hour < 12) return "Good Morning";
@@ -78,21 +88,30 @@ function Home() {
   const recentExpenses = expenses.slice(-4).reverse();
   const balance = summary.totalIncome - summary.totalExpense;
 
+  const categoryIcons = {
+    FOOD: <FaUtensils />,
+    TRAVEL: <FaPlane />,
+    BILLS: <FaFileInvoice />,
+    ENTERTAINMENT: <FaFilm />,
+    SHOPPING: <FaShoppingCart />,
+    MEDICAL: <FaHeartbeat />,
+    EDUCATION: <FaGraduationCap />,
+    RENT: <FaHome />,
+    OTHER: <FaBox />,
+  };
+
   return (
     <>
       <Navbar />
 
-      {/* 🔝 HEADER: GREETING LEFT | PROFILE RIGHT */}
+      {/* Header */}
       <div className="home-header">
         <div className="home-greeting">
           <h1>{greeting},</h1>
           <h2>{userName}</h2>
         </div>
 
-        <div
-          className="home-profile"
-          onClick={() => navigate("/profile")}
-        >
+        <div className="home-profile" onClick={() => navigate("/profile")}>
           {profilePic ? (
             <img
               src={`data:image/jpeg;base64,${profilePic}`}
@@ -104,21 +123,20 @@ function Home() {
               {userName.charAt(0).toUpperCase()}
             </div>
           )}
-          {/* <span className="home-profile-name">{userName}</span> */}
         </div>
       </div>
 
       <div className="home-container">
         {/* Search */}
         <div className="search-wrapper">
-        <i className="fas fa-search search-icon"></i>
-        <input
-          type="text"
-          placeholder="Search transactions..."
-          className="search-input"
-          onChange={(e) => handleSearch(e.target.value)}
-        />
-      </div>
+          <FaSearch className="search-icon" />
+            <input
+              type="text"
+              placeholder="Search transactions..."
+              className="search-input"
+              onChange={(e) => handleSearch(e.target.value)}
+            />
+        </div>
 
 
         {/* Dashboard Cards */}
@@ -128,12 +146,10 @@ function Home() {
               <h3>Total Income</h3>
               <p>₹{summary.totalIncome}</p>
             </div>
-
             <div className="card expense">
               <h3>Total Expense</h3>
               <p>₹{summary.totalExpense}</p>
             </div>
-
             <div className="card balance">
               <h3>Balance</h3>
               <p>₹{balance}</p>
@@ -141,7 +157,7 @@ function Home() {
           </div>
         </div>
 
-        {/* Recent Transactions */}
+        {/* Recent Transactions Cards */}
         <div className="recent-section">
           <h2 className="recent-title">
             Recent Transactions
@@ -153,45 +169,42 @@ function Home() {
             </button>
           </h2>
 
-          <div className="table-wrapper">
-            <table className="transactions-table">
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Amount</th>
-                  <th>Category</th>
-                  <th>Type</th>
-                  <th>Date</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {recentExpenses.map((e) => (
-                  <tr
-                    key={e.id}
-                    className="click-row"
-                    onClick={() => navigate(`/edit/${e.id}`)}
-                  >
-                    <td>{e.title}</td>
-                    <td>₹{e.amount}</td>
-                    <td>{e.category}</td>
-                    <td>{e.type}</td>
-                    <td>{e.date}</td>
-                  </tr>
-                ))}
-
-                {recentExpenses.length === 0 && (
-                  <tr>
-                    <td colSpan="5" className="no-data">
-                      No recent transactions
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
+          <div className="recent-cards">
+            {recentExpenses.length === 0 && (
+              <p className="no-data">No recent transactions</p>
+            )}
+            {recentExpenses.map((e) => (
+              <div
+                key={e.id}
+                className="transaction-card"
+                onClick={() => navigate(`/edit/${e.id}`)}
+              >
+                <div className={`icon-wrapper ${e.category.toLowerCase()}-bg`}>
+                  {categoryIcons[e.category] || <FaBox />}
+                </div>
+                <div className="details">
+                  <span className="amount">
+                    {e.type === "INCOME" ? `+₹${e.amount}` : `-₹${e.amount}`}
+                  </span>
+                  <span className="title">{e.title}</span>
+                </div>
+                <div className="meta">
+                  <span className="date">{e.date}</span>
+                  <span className={`type ${e.type.toLowerCase()}`}>
+                    {e.type === "INCOME" ? (
+                      <FaArrowUp className="arrow-icon" />
+                    ) : (
+                      <FaArrowDown className="arrow-icon" />
+                    )}
+                    {e.type}
+                  </span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
+
       <Footer />
     </>
   );

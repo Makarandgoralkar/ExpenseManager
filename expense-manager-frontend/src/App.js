@@ -40,6 +40,7 @@ function App() {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
 
+
         {/* Protected routes */}
         <Route
           path="/home"

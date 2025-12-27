@@ -114,7 +114,7 @@ function ScheduledTransactions() {
           className="add-btn"
           onClick={() => navigate("/add-scheduled-transaction")}
         >
-          + Add Transaction
+          + Add Scheduled Transaction
         </button>
 
         <div className="transaction-section">

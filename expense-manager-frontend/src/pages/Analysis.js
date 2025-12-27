@@ -10,6 +10,30 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import "./Analysis.css";
+import {
+  FaUtensils,
+  FaPlane,
+  FaFileInvoice,
+  FaFilm,
+  FaShoppingCart,
+  FaHeartbeat,
+  FaGraduationCap,
+  FaHome,
+  FaBox,
+} from "react-icons/fa";
+
+const categoryIcons = {
+  FOOD: <FaUtensils />,
+  TRAVEL: <FaPlane />,
+  BILLS: <FaFileInvoice />,
+  ENTERTAINMENT: <FaFilm />,
+  SHOPPING: <FaShoppingCart />,
+  MEDICAL: <FaHeartbeat />,
+  EDUCATION: <FaGraduationCap />,
+  RENT: <FaHome />,
+  OTHER: <FaBox />,
+};
+
 
 const FILTERS = ["DATE", "WEEK", "MONTH", "YEAR"];
 
@@ -195,11 +219,15 @@ function Analysis() {
             <div className="category-list">
               {categoryData.map((item, index) => (
                 <div key={index} className="category-row">
-                  <span>{item.name}</span>
-                  <span>₹ {item.value.toFixed(2)}</span>
+                  <div className="category-name">
+                    <span className="category-icon">{categoryIcons[item.name] || <FaBox />}</span>
+                    <span>{item.name}</span>
+                  </div>
+                    <span>₹ {item.value.toFixed(2)}</span>
                 </div>
               ))}
             </div>
+
           </>
         )}
       </div>

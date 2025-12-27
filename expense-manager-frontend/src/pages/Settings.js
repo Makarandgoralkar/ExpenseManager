@@ -1,20 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import {
   FaUserCog,
-  FaPalette,
-  FaMoneyBill,
   FaInfoCircle,
   FaTrash,
+  FaFileContract,
+  FaEnvelope,
+  FaShieldAlt,
+  FaUsers,
+  FaQuestionCircle,
+  FaCommentDots,
 } from "react-icons/fa";
 import "./Settings.css";
 
 function Settings() {
-  const [theme, setTheme] = useState("light");
-  const [currency, setCurrency] = useState("INR");
-  const [notifications, setNotifications] = useState(true);
 
   const deleteAccount = async () => {
     if (!window.confirm("Are you sure you want to delete your account permanently?")) {
@@ -77,57 +78,43 @@ function Settings() {
             </button>
           </motion.div>
 
-          {/* APPEARANCE */}
+          {/* MORE SECTION */}
           <motion.div className="settings-card" whileHover={{ scale: 1.02 }}>
             <div className="settings-header">
-              <FaPalette className="icon" />
-              <h3>Appearance</h3>
+              <FaInfoCircle className="icon" />
+              <h3>More</h3>
             </div>
 
-            <label className="settings-row">
-              Theme
-              <select
-                className="select-input"
-                value={theme}
-                onChange={(e) => setTheme(e.target.value)}
-              >
-                <option value="light">☀ Light</option>
-                <option value="dark">🌙 Dark</option>
-              </select>
-            </label>
+            <a href="/privacy-policy" className="settings-item">
+              <FaShieldAlt className="link-icon" /> Privacy Policy
+            </a>
+            <a href="/terms-of-service" className="settings-item">
+              <FaFileContract className="link-icon" /> Terms of Service
+            </a>
+            <a href="/contact" className="settings-item">
+              <FaEnvelope className="link-icon" /> Contact Us
+            </a>
+            <a href="/about" className="settings-item">
+              <FaUsers className="link-icon" /> About Us
+            </a>
           </motion.div>
 
-          {/* APP PREFERENCES */}
+          {/* SUPPORT & FEEDBACK SECTION */}
           <motion.div className="settings-card" whileHover={{ scale: 1.02 }}>
             <div className="settings-header">
-              <FaMoneyBill className="icon" />
-              <h3>App Preferences</h3>
+              <FaCommentDots className="icon" />
+              <h3>Support & Feedback</h3>
             </div>
 
-            <label className="settings-row">
-              Currency
-              <select
-                className="select-input"
-                value={currency}
-                onChange={(e) => setCurrency(e.target.value)}
-              >
-                <option value="INR">₹ INR</option>
-                <option value="USD">$ USD</option>
-                <option value="EUR">€ EUR</option>
-              </select>
-            </label>
-
-            <label className="settings-row">
-              Notifications
-              <label className="switch">
-                <input
-                  type="checkbox"
-                  checked={notifications}
-                  onChange={() => setNotifications(!notifications)}
-                />
-                <span className="slider"></span>
-              </label>
-            </label>
+            <a href="/faq" className="settings-item">
+              <FaQuestionCircle className="link-icon" /> FAQ
+            </a>
+            <a href="/query" className="settings-item">
+              <FaCommentDots className="link-icon" /> Query
+            </a>
+            <a href="/feedback" className="settings-item">
+              <FaEnvelope className="link-icon" /> Feedback
+            </a>
           </motion.div>
 
           {/* ABOUT SECTION */}

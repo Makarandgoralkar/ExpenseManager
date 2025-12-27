@@ -43,21 +43,14 @@
   margin-bottom: 15px;
 }
 
-.icon {
-  font-size: 24px;
-  color: #007bff;
-}
-
 .settings-item {
-  display: inline-block;
+  display: flex;
+  align-items: center;
   margin-bottom: 15px;
   text-decoration: none;
   color: #007bff;
   font-weight: 500;
-}
-
-.settings-item:hover {
-  text-decoration: underline;
+  gap: 8px;
 }
 
 .settings-row {
@@ -126,10 +119,6 @@ input:checked + .slider:before {
   align-items: center;
   gap: 8px;
   font-weight: 500;
-}
-
-.delete-account-btn:hover {
-  background: #c9302c;
 }
 
 .about-text {

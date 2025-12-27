@@ -1,4 +1,3 @@
-// src/pages/Faq.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
@@ -58,22 +57,13 @@ const FAQ_LIST = [
   },
 ];
 
-
 function Faq() {
   const [expandedIndex, setExpandedIndex] = useState(null);
-  const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
   const toggleFAQ = (index) => {
     setExpandedIndex(expandedIndex === index ? null : index);
   };
-
-  const filteredFAQs = FAQ_LIST.filter(
-    (faq) =>
-      faq.q.toLowerCase().includes(search.toLowerCase()) ||
-      faq.a.toLowerCase().includes(search.toLowerCase()) ||
-      faq.category.toLowerCase().includes(search.toLowerCase())
-  );
 
   return (
     <>
@@ -84,29 +74,17 @@ function Faq() {
         </button>
         <h1>FAQs</h1>
 
-        <input
-          type="text"
-          placeholder="Search FAQs..."
-          className="faq-search"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-
-        {filteredFAQs.length === 0 ? (
-          <p className="no-faqs">No FAQs found.</p>
-        ) : (
-          filteredFAQs.map((faq, index) => (
-            <div key={index} className="faq-item">
-              <div className="faq-question" onClick={() => toggleFAQ(index)}>
-                <span>{faq.q}</span>
-                <span>{expandedIndex === index ? "−" : "+"}</span>
-              </div>
-              {expandedIndex === index && (
-                <div className="faq-answer">{faq.a}</div>
-              )}
+        {FAQ_LIST.map((faq, index) => (
+          <div key={index} className="faq-item">
+            <div className="faq-question" onClick={() => toggleFAQ(index)}>
+              <span>{faq.q}</span>
+              <span>{expandedIndex === index ? "−" : "+"}</span>
             </div>
-          ))
-        )}
+            {expandedIndex === index && (
+              <div className="faq-answer">{faq.a}</div>
+            )}
+          </div>
+        ))}
       </div>
       <Footer />
     </>

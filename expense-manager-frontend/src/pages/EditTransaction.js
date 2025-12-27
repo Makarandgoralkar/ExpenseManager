@@ -1,9 +1,39 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import API from "../services/api";
 import "./EditTransaction.css";
+import {
+  FaUtensils,
+  FaPlane,
+  FaFileInvoice,
+  FaFilm,
+  FaShoppingCart,
+  FaHeartbeat,
+  FaGraduationCap,
+  FaHome,
+  FaBox,
+  FaArrowUp,
+  FaArrowDown
+} from "react-icons/fa";
+
+const categories = [
+  { value: "FOOD", label: "Food", icon: <FaUtensils /> },
+  { value: "TRAVEL", label: "Travel", icon: <FaPlane /> },
+  { value: "BILLS", label: "Bills", icon: <FaFileInvoice /> },
+  { value: "ENTERTAINMENT", label: "Entertainment", icon: <FaFilm /> },
+  { value: "SHOPPING", label: "Shopping", icon: <FaShoppingCart /> },
+  { value: "MEDICAL", label: "Medical", icon: <FaHeartbeat /> },
+  { value: "EDUCATION", label: "Education", icon: <FaGraduationCap /> },
+  { value: "RENT", label: "Rent", icon: <FaHome /> },
+  { value: "OTHER", label: "Other", icon: <FaBox /> },
+];
+
+const types = [
+  { value: "INCOME", label: "Income", icon: <FaArrowUp color="green" /> },
+  { value: "EXPENSE", label: "Expense", icon: <FaArrowDown color="red" /> },
+];
 
 function EditTransaction() {
   const { id } = useParams();
@@ -17,6 +47,12 @@ function EditTransaction() {
     date: "",
     time: "",
   });
+
+  const [categoryOpen, setCategoryOpen] = useState(false);
+  const [typeOpen, setTypeOpen] = useState(false);
+
+  const categoryRef = useRef(null);
+  const typeRef = useRef(null);
 
   // Fetch transaction
   const fetchTransaction = useCallback(async () => {
@@ -32,10 +68,12 @@ function EditTransaction() {
     fetchTransaction();
   }, [fetchTransaction]);
 
+  // Handle form input changes
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // Update transaction
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -48,6 +86,7 @@ function EditTransaction() {
     }
   };
 
+  // Delete transaction
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this transaction?")) {
       try {
@@ -60,6 +99,23 @@ function EditTransaction() {
       }
     }
   };
+
+  const selectedCategory = categories.find((c) => c.value === form.category);
+  const selectedType = types.find((t) => t.value === form.type);
+
+  // Close dropdowns if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (categoryRef.current && !categoryRef.current.contains(event.target)) {
+        setCategoryOpen(false);
+      }
+      if (typeRef.current && !typeRef.current.contains(event.target)) {
+        setTypeOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <div className="page-wrapper">
@@ -86,22 +142,65 @@ function EditTransaction() {
               required
             />
 
-            <select name="category" value={form.category} onChange={handleChange}>
-              <option value="FOOD">Food</option>
-              <option value="TRAVEL">Travel</option>
-              <option value="BILLS">Bills</option>
-              <option value="ENTERTAINMENT">Entertainment</option>
-              <option value="SHOPPING">Shopping</option>
-              <option value="MEDICAL">Medical</option>
-              <option value="EDUCATION">Education</option>
-              <option value="RENT">Rent</option>
-              <option value="OTHER">Other</option>
-            </select>
+            {/* CATEGORY DROPDOWN */}
+            <label className="dropdown-label">Category</label>
+            <div className="dropdown-wrapper" ref={categoryRef}>
+              <div
+                className="dropdown-selected"
+                onClick={() => setCategoryOpen(!categoryOpen)}
+              >
+                <span className="icon">{selectedCategory?.icon}</span>
+                <span>{selectedCategory?.label}</span>
+                <span className={`arrow ${categoryOpen ? "open" : ""}`}>▾</span>
+              </div>
+              {categoryOpen && (
+                <div className="dropdown-menu">
+                  {categories.map((cat) => (
+                    <div
+                      key={cat.value}
+                      className="dropdown-item"
+                      onClick={() => {
+                        setForm({ ...form, category: cat.value });
+                        setCategoryOpen(false);
+                      }}
+                    >
+                      <span className="icon">{cat.icon}</span>
+                      <span>{cat.label}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
 
-            <select name="type" value={form.type} onChange={handleChange}>
-              <option value="INCOME">Income</option>
-              <option value="EXPENSE">Expense</option>
-            </select>
+            {/* TYPE DROPDOWN */}
+            <label className="dropdown-label">Type</label>
+            <div className="dropdown-wrapper" ref={typeRef}>
+              <div
+                className="dropdown-selected"
+                onClick={() => setTypeOpen(!typeOpen)}
+              >
+                <span className="icon">{selectedType?.icon}</span>
+                <span>{selectedType?.label}</span>
+                <span className={`arrow ${typeOpen ? "open" : ""}`}>▾</span>
+              </div>
+              {typeOpen && (
+                <div className="dropdown-menu">
+                  {types.map((t) => (
+                    <div
+                      key={t.value}
+                      className="dropdown-item"
+                      onClick={() => {
+                        setForm({ ...form, type: t.value });
+                        setTypeOpen(false);
+                      }}
+                    >
+                      <span className="icon">{t.icon}</span>
+                      <span>{t.label}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
 
             <input
               type="date"

@@ -3,15 +3,6 @@
   margin: 40px auto;
 }
 
-.faq-search {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 25px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-}
-
 .faq-item {
   background: #fff;
   border-radius: 10px;
