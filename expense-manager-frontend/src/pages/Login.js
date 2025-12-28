@@ -40,14 +40,13 @@ function Login() {
   return (
     <div className="auth-page">
       <div className="app-header">
-  <div className="app-brand">
-    <img src={logo} alt="Expense Manager Logo" className="app-logo" />
-    <h1 className="app-title">Expense Manager</h1>
-  </div>
-  <p className="app-tagline">Privacy First. Your Data. Your Device.</p>
-</div>
-
-
+        <div className="app-brand">
+          <img src={logo} alt="Expense Manager Logo" className="app-logo" />
+            <h1 className="app-title">Expense Manager</h1>
+        </div>
+          <p className="app-tagline">Privacy First. Your Data. Your Device.</p>
+      </div>
+      
       <div className="auth-card">
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
