@@ -1,17 +1,14 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { FaGlobe, FaLinkedin, FaGithub } from "react-icons/fa";
 import "./About.css";
 
-// IMPORT ASSETS (same style as Navbar)
+// IMPORT ASSETS
 import appLogo from "../assets/expense_manager_logo.png";
 import devPhoto from "../assets/dev_photo.jpg"; // add your photo here
 
 function About() {
-  const navigate = useNavigate();
-
   return (
     <div className="page-wrapper">
       <Navbar />
@@ -19,28 +16,12 @@ function About() {
       <div className="content-wrap">
         {/* HERO */}
         <section className="about-hero">
-          <button
-            className="back-btn"
-            onClick={() => navigate("/profile-dashboard")}
-          >
-            ← Back to Dashboard
-          </button>
-
           <h1>Expense Manager</h1>
           <p>Smart. Simple. Secure way to manage your finances.</p>
         </section>
 
         {/* CONTENT */}
         <div className="about-container">
-          {/* OVERVIEW */}
-          <div className="about-card glass">
-            <h2>📌 Overview</h2>
-            <p>
-              Expense Manager helps you track income, manage expenses,
-              set budgets, and analyze your spending patterns — all in one place.
-            </p>
-          </div>
-
           {/* APP + DEVELOPER */}
           <div className="info-grid">
             {/* APP INFO */}

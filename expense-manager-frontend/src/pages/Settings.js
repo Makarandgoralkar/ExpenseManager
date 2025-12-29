@@ -10,7 +10,6 @@ import {
   FaEnvelope,
   FaShieldAlt,
   FaUsers,
-  FaQuestionCircle,
   FaCommentDots,
 } from "react-icons/fa";
 import "./Settings.css";
@@ -60,10 +59,7 @@ function Settings() {
           </motion.h2>
 
           {/* ACCOUNT SETTINGS */}
-          <motion.div
-            className="settings-card"
-            whileHover={{ scale: 1.02 }}
-          >
+          <motion.div className="settings-card">
             <div className="settings-header">
               <FaUserCog className="icon" />
               <h3>Account Settings</h3>
@@ -79,7 +75,7 @@ function Settings() {
           </motion.div>
 
           {/* MORE SECTION */}
-          <motion.div className="settings-card" whileHover={{ scale: 1.02 }}>
+          <motion.div className="settings-card">
             <div className="settings-header">
               <FaInfoCircle className="icon" />
               <h3>More</h3>
@@ -100,32 +96,15 @@ function Settings() {
           </motion.div>
 
           {/* SUPPORT & FEEDBACK SECTION */}
-          <motion.div className="settings-card" whileHover={{ scale: 1.02 }}>
+          <motion.div className="settings-card">
             <div className="settings-header">
               <FaCommentDots className="icon" />
               <h3>Support & Feedback</h3>
             </div>
 
-            <a href="/faq" className="settings-item">
-              <FaQuestionCircle className="link-icon" /> FAQ
+            <a href="/support" className="settings-item">
+              <FaEnvelope className="link-icon" /> Support & Feedback
             </a>
-            <a href="/query" className="settings-item">
-              <FaCommentDots className="link-icon" /> Query
-            </a>
-            <a href="/feedback" className="settings-item">
-              <FaEnvelope className="link-icon" /> Feedback
-            </a>
-          </motion.div>
-
-          {/* ABOUT SECTION */}
-          <motion.div className="settings-card" whileHover={{ scale: 1.02 }}>
-            <div className="settings-header">
-              <FaInfoCircle className="icon" />
-              <h3>About</h3>
-            </div>
-
-            <p className="about-text">Expense Manager v1.0</p>
-            <p className="about-text">Developed by Makarand Goralkar</p>
           </motion.div>
         </div>
       </div>

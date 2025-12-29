@@ -21,6 +21,8 @@ import ResetPassword from "./pages/ResetPassword";
 import OAuth2Success from "./pages/OAuth2Success";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
+import SupportFeedback from "./pages/SupportFeedback";
+import Contact from "./pages/Contact";
 
 import ScheduledTransactions from "./pages/ScheduledTransactions";
 import AddScheduledTransaction from "./pages/AddScheduledTransaction";
@@ -39,7 +41,8 @@ function App() {
         <Route path="/oauth2-success" element={<OAuth2Success />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
-
+        <Route path="/support" element={<SupportFeedback />} />
+        <Route path="/contact" element={<Contact />} />
 
         {/* Protected routes */}
         <Route
