@@ -4,6 +4,7 @@ import com.project.expensemanager.entity.ScheduledTransaction;
 import com.project.expensemanager.entity.User;
 import com.project.expensemanager.service.ScheduledTransactionService;
 import com.project.expensemanager.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -22,14 +23,14 @@ public class ScheduledTransactionController {
     @Autowired
     private UserService userService;
 
-    // Get all scheduled transactions for the logged-in user
+    @Operation(summary = "Get All Scheduled Transactions", description = "Retrieve all scheduled transactions belonging to the authenticated user.")
     @GetMapping
     public List<ScheduledTransaction> getAll(Authentication auth) {
         User user = userService.getUserByEmail(auth.getName());
         return transactionService.getAll(user);
     }
 
-    // Get a specific transaction by ID
+    @Operation(summary = "Get Transaction by Id", description = "Retrieve a specific scheduled transaction by its ID for the authenticated user.")
     @GetMapping("/{id}")
     public ResponseEntity<ScheduledTransaction> getById(@PathVariable Long id, Authentication auth) {
         User user = userService.getUserByEmail(auth.getName());
@@ -39,7 +40,7 @@ public class ScheduledTransactionController {
                 .orElse(ResponseEntity.status(403).build());
     }
 
-    // Create new scheduled transaction
+    @Operation(summary = "Create Scheduled Transaction", description = "Create a new scheduled transaction for the authenticated user.")
     @PostMapping
     public ResponseEntity<ScheduledTransaction> create(@RequestBody ScheduledTransaction transaction,
                                                        Authentication auth) {
@@ -48,7 +49,7 @@ public class ScheduledTransactionController {
         return ResponseEntity.ok(transactionService.create(transaction));
     }
 
-    // Update scheduled transaction
+    @Operation(summary = "Update Scheduled Transaction", description = "Update an existing scheduled transaction belonging to the authenticated user.")
     @PutMapping("/{id}")
     public ResponseEntity<ScheduledTransaction> update(@PathVariable Long id,
                                                        @RequestBody ScheduledTransaction transaction,
@@ -60,7 +61,7 @@ public class ScheduledTransactionController {
                 .orElse(ResponseEntity.status(403).build());
     }
 
-    // Delete scheduled transaction
+    @Operation(summary = "Delete Scheduled Transaction", description = "Delete a scheduled transaction owned by the authenticated user.")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id, Authentication auth) {
         User user = userService.getUserByEmail(auth.getName());
@@ -73,7 +74,7 @@ public class ScheduledTransactionController {
                 .orElse(ResponseEntity.status(403).build());
     }
 
-    // Mark transaction as completed
+    @Operation(summary = "Mark as Completed", description = "Mark a scheduled transaction as completed for the authenticated user.")
     @PutMapping("/{id}/complete")
     public ResponseEntity<ScheduledTransaction> markCompleted(@PathVariable Long id, Authentication auth) {
         User user = userService.getUserByEmail(auth.getName());

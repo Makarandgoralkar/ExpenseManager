@@ -71,6 +71,7 @@ public class UserController {
         }
     }
 
+    @Operation(summary = "Get profile picture", description="Returns the user's profile picture as a Base64-encoded string. Requires Bearer JWT token.")
     @GetMapping("/profile/picture")
     public ResponseEntity<?> getProfilePicture(@RequestHeader("Authorization") String authHeader) {
         try {
@@ -88,6 +89,7 @@ public class UserController {
         }
     }
 
+    @Operation(summary = "Upload Profile Picture", description = "Uploads or updates the user's profile picture. File is sent as multipart/form-data. Requires Bearer JWT token.")
     @PostMapping("/profile/upload")
     public ResponseEntity<?> uploadProfilePicture(
             @RequestHeader("Authorization") String authHeader,
@@ -111,6 +113,7 @@ public class UserController {
         }
     }
 
+    @Operation(summary = "Delete Profile Picture", description = "Deletes the user's current profile picture. Requires Bearer JWT token.")
     @DeleteMapping("/profile/picture")
     public ResponseEntity<?> deleteProfilePicture(
             @RequestHeader("Authorization") String authHeader) {

@@ -6,6 +6,7 @@ import com.project.expensemanager.repository.SupportTicketRepository;
 import com.project.expensemanager.security.jwt.JwtUtil;
 import com.project.expensemanager.service.EmailService;
 import com.project.expensemanager.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +34,7 @@ public class SupportController {
 
     private static final String UPLOAD_DIR = "uploads/support/";
 
+    @Operation(summary = "Submit support or feedback", description = "Allows an authenticated user to submit a support ticket or feedback. Includes type, subject, message, optional rating, and optional file attachment. Sends a notification email to the admin. Requires Bearer JWT token.")
     @PostMapping(consumes = "multipart/form-data")
     public ResponseEntity<?> submitSupport(
             @RequestHeader("Authorization") String authHeader,
