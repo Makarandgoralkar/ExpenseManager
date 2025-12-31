@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "./Faq.css";
@@ -59,7 +58,6 @@ const FAQ_LIST = [
 
 function Faq() {
   const [expandedIndex, setExpandedIndex] = useState(null);
-  const navigate = useNavigate();
 
   const toggleFAQ = (index) => {
     setExpandedIndex(expandedIndex === index ? null : index);
@@ -69,9 +67,6 @@ function Faq() {
     <>
       <Navbar />
       <div className="faq-container">
-        <button className="back-btn" onClick={() => navigate("/profile-dashboard")}>
-          ← Back to Dashboard
-        </button>
         <h1>FAQs</h1>
 
         {FAQ_LIST.map((faq, index) => (
