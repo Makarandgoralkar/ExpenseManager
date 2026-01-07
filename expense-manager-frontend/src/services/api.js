@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:8080/api", // Your Spring Boot backend
+  baseURL: process.env.REACT_APP_BACKEND_URL, // Your Spring Boot backend
 });
 
 // Add token to every request if available
