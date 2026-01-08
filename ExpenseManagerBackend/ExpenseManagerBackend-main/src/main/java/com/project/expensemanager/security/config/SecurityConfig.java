@@ -4,6 +4,7 @@ import com.project.expensemanager.security.jwt.JwtFilter;
 import com.project.expensemanager.security.jwt.JwtUtil;
 import com.project.expensemanager.security.oauth.OAuth2SuccessHandler;
 import com.project.expensemanager.service.UserService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -26,6 +27,9 @@ public class SecurityConfig {
     private final JwtUtil jwtUtil;
     private final UserService userService;
     private final JwtFilter jwtFilter;
+
+    @Value("${frontend.url}")
+    private String frontendUrl;
 
     public SecurityConfig(JwtUtil jwtUtil, UserService userService, JwtFilter jwtFilter) {
         this.jwtUtil = jwtUtil;
@@ -83,7 +87,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(List.of("http://localhost:3000"));
+        config.setAllowedOrigins(List.of(frontendUrl));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setExposedHeaders(List.of("Authorization"));
