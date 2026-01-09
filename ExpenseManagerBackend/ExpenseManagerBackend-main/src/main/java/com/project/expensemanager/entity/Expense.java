@@ -3,6 +3,7 @@ package com.project.expensemanager.entity;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "expenses")
@@ -27,7 +28,7 @@ public class Expense {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @com.fasterxml.jackson.annotation.JsonBackReference
+    @JsonBackReference
     private User user;
 
 
