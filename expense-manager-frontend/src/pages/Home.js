@@ -107,7 +107,7 @@ function Home() {
       {/* Header */}
       <div className="home-header">
         <div className="home-greeting">
-          <h1>{greeting},</h1>
+          <h1>{greeting}</h1>
           <h2>{userName}</h2>
         </div>
 
