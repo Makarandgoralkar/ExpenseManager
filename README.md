@@ -201,7 +201,7 @@ This project is developed for learning and demonstration purposes.
 * **Login Page** – Secure login with email/password and OAuth2 (Google, Facebook, LinkedIn)
 
   ```
-  <img src="screenshots/login.png" width="600"/>
+  ![Login Page](screenshots/login.png)
 
   ```
 * **Signup Page** – New user registration with validation
