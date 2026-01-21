@@ -199,63 +199,90 @@ This project is developed for learning and demonstration purposes.
 ### 🔐 Authentication
 
 * **Login Page** – Secure login with email/password and OAuth2 (Google, Facebook, LinkedIn)
+
   ![Login Page](screenshots/login.png)
 
+
 * **Signup Page** – New user registration with validation
+
   ![Signup Page](screenshots/signup.png)
 
 
 **Forgot Password Page** – Reset password via email  
+
 ![forgot-password Page](screenshots/forgot-password.png)
+
 
 ### 🏠 Dashboard
 
 * **Home Dashboard** – Overview of balance, income, expenses, and recent transactions
+
   ![Home Dashboard](screenshots/home-dashboard.png)
+
 
 ### 💸 Transactions
 
 * **All Transactions** – View, search, and filter transactions
+
   ![All Transactions](screenshots/all-transactions.png)
 
+
 * **Add Transaction** – Add income or expense with category and date
+
   ![Add Transaction](screenshots/add-transaction.png)
 
 
 * **Edit Transaction** – Update or delete an existing transaction
+
   ![Edit Transaction](screenshots/edit-transaction.png)
+
 
 ### 📊 Analytics
 
 * **Analysis Page** – Category-wise spending and financial summary
+
   ![Analysis Page](screenshots/analysis.png)
+
 
 ### 🔁 Scheduled Transactions
 
 * **Scheduled Transactions List** – View upcoming and completed scheduled payments
+
  ![Scheduled Transactions](screenshots/scheduled-transactions.png)
 
+
 * **Add Scheduled Transaction** – Create recurring transactions
+
   ![Add Scheduled Transaction](screenshots/add-scheduled-transaction.png)
+
 
 ### 👤 Profile & Settings
 
 * **User Profile** – View and update personal details and profile picture
+
   ![Profile Page](screenshots/profile.png)
 
+
 * **Settings & More Options** – App settings, FAQs, About, and Sign Out
+
   ![Settings Page](screenshots/settings.png)
+
 
   ### ℹ️ About Page
 
 **About App** – Information about the application and developer  
+
 ![About Page](screenshots/about.png)
+
 
 ### 📩 Support & Contact
 
 * **Contact Us** – Send queries or messages
+
  ![Contact Page](screenshots/contact.png)
 
+
 * **Support & Feedback** – Submit support tickets or feedback with attachments
+
   ![Support Page](screenshots/support-feedback.png)
 
