@@ -5,7 +5,7 @@ import "./Footer.css";
 function Footer() {
   return (
     <footer className="footer">
-      <p>© 2025 Makarand Goralkar. All rights reserved.</p>
+      <p>© 2026 Makarand Goralkar. All rights reserved.</p>
       <div className="footer-links">
         <a href="/faq">FAQ</a> |{" "}
         <a href="/privacy-policy">Privacy Policy</a> |{" "}

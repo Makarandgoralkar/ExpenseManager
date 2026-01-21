@@ -1,10 +1,11 @@
 body {
   background: #f8f9fa;
   color: #333;
+  margin: 0;
 }
 
 .transactions-container {
-  padding: 40px;
+  padding: 40px 20px;
   width: 90%;
   margin: 0 auto;
 }
@@ -14,30 +15,29 @@ body {
   margin-bottom: 20px;
 }
 
-/* Search bar */
+/* SEARCH BAR STYLE - SAME AS SCHEDULED TRANSACTIONS */
 .search-wrapper {
-  position: relative;
-  width: 60%;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 50px;
+  padding: 10px 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  width: 100%;
+  max-width: 650px;
   margin: 0 auto 20px auto;
 }
 
 .search-wrapper .search-icon {
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 18px;
-  color: #888;
+  color: #777;
+  margin-right: 8px;
 }
 
 .search-input {
+  border: none;
+  outline: none;
   width: 100%;
-  padding: 12px 12px 12px 40px; /* space for icon */
-  font-size: 16px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
 }
-
 
 /* Cards layout */
 .recent-cards {
@@ -143,4 +143,12 @@ body {
   color: #666;
   padding: 20px 0;
   font-size: 16px;
+}
+
+/* Responsive Fix */
+@media (max-width: 768px) {
+  .transactions-container {
+    padding: 20px 12px;
+    width: 85%;
+  }
 }

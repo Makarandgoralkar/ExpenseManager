@@ -15,7 +15,7 @@ import {
   FaBox,
   FaArrowUp,
   FaArrowDown,
-  FaSearch, 
+  FaSearch,
 } from "react-icons/fa";
 import "./Home.css";
 
@@ -127,17 +127,16 @@ function Home() {
       </div>
 
       <div className="home-container">
-        {/* Search */}
-        <div className="search-wrapper">
-          <FaSearch className="search-icon" />
-            <input
-              type="text"
-              placeholder="Search transactions..."
-              className="search-input"
-              onChange={(e) => handleSearch(e.target.value)}
-            />
-        </div>
 
+        {/* SEARCH BAR (Same as Scheduled Transaction) */}
+        <div className="search-box">
+          <FaSearch className="search-icon" />
+          <input
+            type="text"
+            placeholder="Search transactions..."
+            onChange={(e) => handleSearch(e.target.value)}
+          />
+        </div>
 
         {/* Dashboard Cards */}
         <div className="dashboard">

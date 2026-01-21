@@ -21,7 +21,7 @@ import "./Transactions.css";
 
 function Transactions() {
   const [expenses, setExpenses] = useState([]);
-  const [search, setSearch] = useState(""); // ✅ Controlled input
+  const [search, setSearch] = useState(""); // Controlled input
   const navigate = useNavigate();
 
   const fetchExpenses = async () => {
@@ -70,14 +70,14 @@ function Transactions() {
       <div className="transactions-container">
         <h2 className="title">All Transactions</h2>
 
-        {/* Search */}
+        {/* Search bar like Scheduled Transactions */}
         <div className="search-wrapper">
           <FaSearch className="search-icon" />
           <input
             type="text"
             placeholder="Search transactions..."
             className="search-input"
-            value={search} // ✅ Controlled input
+            value={search}
             onChange={(e) => handleSearch(e.target.value)}
           />
         </div>
