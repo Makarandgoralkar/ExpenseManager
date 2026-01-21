@@ -208,7 +208,7 @@ This project is developed for learning and demonstration purposes.
   ![Signup Page](screenshots/signup.png)
 
 
-**Forgot Password Page** – Reset password via email  
+* **Forgot Password Page** – Reset password via email  
 
 ![forgot-password Page](screenshots/forgot-password.png)
 
