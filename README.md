@@ -201,12 +201,13 @@ This project is developed for learning and demonstration purposes.
 * **Login Page** – Secure login with email/password and OAuth2 (Google, Facebook, LinkedIn)
 
   ```
-  screenshots/login.png
+  ![Login Page](screenshots/login.png)
+
   ```
 * **Signup Page** – New user registration with validation
 
   ```
-  screenshots/signup.png
+  ![Signup Page](screenshots/signup.png)
   ```
 
 ### 🏠 Dashboard
@@ -214,7 +215,7 @@ This project is developed for learning and demonstration purposes.
 * **Home Dashboard** – Overview of balance, income, expenses, and recent transactions
 
   ```
-  screenshots/home-dashboard.png
+  ![Home Dashboard](screenshots/home-dashboard.png)
   ```
 
 ### 💸 Transactions
@@ -222,17 +223,17 @@ This project is developed for learning and demonstration purposes.
 * **All Transactions** – View, search, and filter transactions
 
   ```
-  screenshots/all-transactions.png
+  ![All Transactions](screenshots/all-transactions.png)
   ```
 * **Add Transaction** – Add income or expense with category and date
 
   ```
-  screenshots/add-transaction.png
+  ![Add Transaction](screenshots/add-transaction.png)
   ```
 * **Edit Transaction** – Update or delete an existing transaction
 
   ```
-  screenshots/edit-transaction.png
+  ![Edit Transaction](screenshots/edit-transaction.png)
   ```
 
 ### 📊 Analytics
@@ -240,7 +241,7 @@ This project is developed for learning and demonstration purposes.
 * **Analysis Page** – Category-wise spending and financial summary
 
   ```
-  screenshots/analysis.png
+  ![Analysis Page](screenshots/analysis.png)
   ```
 
 ### 🔁 Scheduled Transactions
@@ -248,12 +249,12 @@ This project is developed for learning and demonstration purposes.
 * **Scheduled Transactions List** – View upcoming and completed scheduled payments
 
   ```
-  screenshots/scheduled-transactions.png
+ ![Scheduled Transactions](screenshots/scheduled-transactions.png)
   ```
 * **Add Scheduled Transaction** – Create recurring transactions
 
   ```
-  screenshots/add-scheduled-transaction.png
+  ![Add Scheduled Transaction](screenshots/add-scheduled-transaction.png)
   ```
 
 ### 👤 Profile & Settings
@@ -261,12 +262,12 @@ This project is developed for learning and demonstration purposes.
 * **User Profile** – View and update personal details and profile picture
 
   ```
-  screenshots/profile.png
+  ![Profile Page](screenshots/profile.png)
   ```
 * **Settings & More Options** – App settings, FAQs, About, and Sign Out
 
   ```
-  screenshots/settings.png
+  ![Settings Page](screenshots/settings.png)
   ```
 
 ### 📩 Support & Contact
@@ -274,10 +275,10 @@ This project is developed for learning and demonstration purposes.
 * **Contact Us** – Send queries or messages
 
   ```
-  screenshots/contact.png
+ ![Contact Page](screenshots/contact.png)
   ```
 * **Support & Feedback** – Submit support tickets or feedback with attachments
 
   ```
-  screenshots/support-feedback.png
+  ![Support Page](screenshots/support-feedback.png)
   ```
