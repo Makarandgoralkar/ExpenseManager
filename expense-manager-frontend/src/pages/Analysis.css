@@ -1,6 +1,7 @@
 .analysis-container {
+  width: 90%;
   max-width: 900px;
-  margin: 20px auto;
+  margin: 0 auto;
   padding: 20px;
 }
 

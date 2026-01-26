@@ -5,9 +5,10 @@ body {
 }
 
 .transactions-container {
-  padding: 40px 20px;
   width: 90%;
+  max-width: 900px;
   margin: 0 auto;
+  padding: 20px;
 }
 
 .title {
@@ -23,7 +24,7 @@ body {
   border-radius: 50px;
   padding: 10px 15px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  width: 100%;
+  width: 90%;
   max-width: 650px;
   margin: 0 auto 20px auto;
 }
@@ -116,7 +117,7 @@ body {
 }
 
 .type.income {
-  color: #28a745;
+  color: #222;
   font-weight: 600;
   display: flex;
   align-items: center;
