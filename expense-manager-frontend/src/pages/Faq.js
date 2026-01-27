@@ -7,7 +7,7 @@ const FAQ_LIST = [
   {
     category: "Transactions",
     q: "How do I add a transaction?",
-    a: "Go to the Transactions page and click on 'Add Transaction'. Fill in the details like amount, category, date, and notes, then save.",
+    a: "Go to the Add Transaction page. Fill in the details like Title, amount, category, date, and Type, etc and then click on 'Add Transaction' button.",
   },
   {
     category: "Transactions",
@@ -47,7 +47,7 @@ const FAQ_LIST = [
   {
     category: "Transactions",
     q: "Can I search for a transaction?",
-    a: "Yes, the Transactions page has a search bar where you can filter by amount, category, or notes.",
+    a: "Yes, the Transactions page has a search bar where you can filter by title, amount, category, or type.",
   },
   {
     category: "App Info",
