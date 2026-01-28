@@ -98,7 +98,7 @@ function ScheduledTransactions() {
               <FaSearch className="search-icon" />
               <input
                 type="text"
-                placeholder="Search transactions..."
+                placeholder="Search Scheduled Transactions..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />

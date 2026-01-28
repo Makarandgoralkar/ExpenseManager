@@ -1,63 +1,93 @@
 import React from "react";
 import "./Navbar.css";
 import { FaPlus, FaBars, FaHome, FaChartBar } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../assets/expense_manager_logo.png";
 
 function Navbar() {
   const navigate = useNavigate();
+  const location = useLocation(); // get current route
+
+  // Function to check if route is active
+  const isActive = (path) => location.pathname === path;
 
   return (
-    <nav className="navbar">
-      {/* Logo + Title */}
-      <div className="logo-container" onClick={() => navigate("/home")}>
-        <img src={logo} alt="Expense Manager Logo" className="app-logo" />
-        <h2 className="logo-text">Expense Manager</h2>
-      </div>
+    <>
+      {/* ===== DESKTOP NAVBAR ===== */}
+      <nav className="desktop-navbar">
+        <div className="logo-container" onClick={() => navigate("/home")}>
+          <img src={logo} alt="Expense Manager Logo" />
+          <h2>Expense Manager</h2>
+        </div>
 
-      <ul className="nav-links">
-        {/* Home */}
-        <li className="nav-item" title="Home">
-          <a href="/home">
-            <div className="icon-circle">
-              <FaHome className="icon" />
-            </div>
-            <span className="link-text">Home</span>
-          </a>
-        </li>
+        <ul className="desktop-links">
+          <li
+            className={isActive("/home") ? "active" : ""}
+            onClick={() => navigate("/home")}
+          >
+            <FaHome /> Home
+          </li>
+          <li
+            className={isActive("/analysis") ? "active" : ""}
+            onClick={() => navigate("/analysis")}
+          >
+            <FaChartBar /> Analysis
+          </li>
+          <li
+            className={`desktop-add ${isActive("/addtransaction") ? "active" : ""}`}
+            onClick={() => navigate("/addtransaction")}
+          >
+            <FaPlus />
+          </li>
+          <li
+            className={isActive("/profile-dashboard") ? "active" : ""}
+            onClick={() => navigate("/profile-dashboard")}
+          >
+            <FaBars /> Menu
+          </li>
+        </ul>
+      </nav>
 
-        {/* Analysis */}
-        <li className="nav-item" title="Analysis">
-          <a href="/analysis">
-            <div className="icon-circle">
-              <FaChartBar className="icon" />
-            </div>
-            <span className="link-text">Analysis</span>
-          </a>
-        </li>
+      {/* ===== MOBILE HEADER ===== */}
+      <header className="top-header">
+        <img src={logo} alt="Expense Manager Logo" />
+        <h2>Expense Manager</h2>
+      </header>
 
-        {/* Add Transaction - only icon */}
-        <li className="nav-item add-btn" title="Add Transaction">
-          <a href="/addtransaction">
-            <div className="icon-circle add-fab">
-              <FaPlus className="icon" />
-            </div>
-          </a>
-        </li>
+      {/* ===== MOBILE BOTTOM NAV ===== */}
+      <nav className="bottom-nav">
+        <button
+          className={isActive("/home") ? "active" : ""}
+          onClick={() => navigate("/home")}
+        >
+          <FaHome />
+          <span>Home</span>
+        </button>
 
-        {/* Profile/Menu */}
-        <li
-          className="nav-item"
-          title="Profile Dashboard"
+        <button
+          className={isActive("/analysis") ? "active" : ""}
+          onClick={() => navigate("/analysis")}
+        >
+          <FaChartBar />
+          <span>Analysis</span>
+        </button>
+
+        <button
+          className={`add-btn ${isActive("/addtransaction") ? "active" : ""}`}
+          onClick={() => navigate("/addtransaction")}
+        >
+          <FaPlus />
+        </button>
+
+        <button
+          className={isActive("/profile-dashboard") ? "active" : ""}
           onClick={() => navigate("/profile-dashboard")}
         >
-          <div className="icon-circle">
-            <FaBars className="icon" />
-          </div>
-          <span className="link-text">Menu</span>
-        </li>
-      </ul>
-    </nav>
+          <FaBars />
+          <span>Menu</span>
+        </button>
+      </nav>
+    </>
   );
 }
 

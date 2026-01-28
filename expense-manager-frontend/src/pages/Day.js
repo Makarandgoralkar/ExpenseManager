@@ -3,6 +3,19 @@ import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import API from "../services/api";
+import {
+  FaUtensils,
+  FaPlane,
+  FaFileInvoice,
+  FaFilm,
+  FaShoppingCart,
+  FaHeartbeat,
+  FaGraduationCap,
+  FaHome,
+  FaBox,
+  FaArrowUp,
+  FaArrowDown,
+} from "react-icons/fa";
 import "./Day.css";
 
 function Day() {
@@ -47,6 +60,19 @@ function Day() {
   const getHeaderLabel = () => currentDate.toDateString();
   const balance = summary.totalIncome - summary.totalExpense;
 
+  // Category Icons
+  const categoryIcons = {
+    FOOD: <FaUtensils />,
+    TRAVEL: <FaPlane />,
+    BILLS: <FaFileInvoice />,
+    ENTERTAINMENT: <FaFilm />,
+    SHOPPING: <FaShoppingCart />,
+    MEDICAL: <FaHeartbeat />,
+    EDUCATION: <FaGraduationCap />,
+    RENT: <FaHome />,
+    OTHER: <FaBox />,
+  };
+
   return (
     <>
       <Navbar />
@@ -74,40 +100,44 @@ function Day() {
           </div>
         </div>
 
-        {/* Transactions */}
+        {/* Transactions Cards */}
         <h2 className="title">Transactions</h2>
-        {transactions.length === 0 ? (
-          <p className="no-transactions">No transactions for this day.</p>
-        ) : (
-          <div className="table-wrapper">
-            <table className="transactions-table">
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Amount</th>
-                  <th>Category</th>
-                  <th>Type</th>
-                  <th>Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                {transactions.map((t) => (
-                  <tr
-                    key={t.id}
-                    className="click-row"
-                    onClick={() => navigate(`/edit/${t.id}`)}
-                  >
-                    <td>{t.title}</td>
-                    <td>₹{t.amount}</td>
-                    <td>{t.category}</td>
-                    <td>{t.type}</td>
-                    <td>{t.date}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+        <div className="recent-cards">
+          {transactions.length === 0 ? (
+            <p className="no-data">No transactions for this day.</p>
+          ) : (
+            transactions.map((t) => (
+              <div
+                key={t.id}
+                className="transaction-card"
+                onClick={() => navigate(`/edit/${t.id}`)}
+              >
+                <div className={`icon-wrapper ${t.category.toLowerCase()}-bg`}>
+                  {categoryIcons[t.category] || <FaBox />}
+                </div>
+                <div className="details">
+                  <span className="amount">
+                    {t.type.toUpperCase() === "INCOME"
+                      ? `+₹${t.amount}`
+                      : `-₹${t.amount}`}
+                  </span>
+                  <span className="title">{t.title}</span>
+                </div>
+                <div className="meta">
+                  <span className="date">{t.date}</span>
+                  <span className={`type ${t.type.toLowerCase()}`}>
+                    {t.type.toUpperCase() === "INCOME" ? (
+                      <FaArrowUp className="arrow-icon" />
+                    ) : (
+                      <FaArrowDown className="arrow-icon" />
+                    )}
+                    {t.type}
+                  </span>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
       </div>
       <Footer />
     </>

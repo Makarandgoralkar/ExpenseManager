@@ -240,3 +240,13 @@ body {
 .type.expense .arrow-icon {
   color: #fff;
 }
+
+.scheduled-bg {
+  background: #10b981;
+  font-size: 20px;
+}
+
+.type.scheduled {
+  font-weight: 600;
+  color: #10b981;
+}

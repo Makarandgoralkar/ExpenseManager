@@ -16,11 +16,13 @@ import {
   FaArrowUp,
   FaArrowDown,
   FaSearch,
+  FaCheckCircle,
 } from "react-icons/fa";
 import "./Home.css";
 
 function Home() {
   const [expenses, setExpenses] = useState([]);
+  const [scheduled, setScheduled] = useState([]);
   const [summary, setSummary] = useState({ totalIncome: 0, totalExpense: 0 });
   const [userName, setUserName] = useState("");
   const [greeting, setGreeting] = useState("");
@@ -34,6 +36,12 @@ function Home() {
 
     const summaryRes = await API.get("/expenses/analytics/summary");
     setSummary(summaryRes.data);
+  };
+
+  const fetchScheduled = async () => {
+    const scheduledRes = await API.get("/scheduled-transactions");
+    // Only upcoming (not completed)
+    setScheduled(scheduledRes.data.filter((t) => !t.completed));
   };
 
   const fetchUserProfile = async () => {
@@ -68,6 +76,7 @@ function Home() {
 
   useEffect(() => {
     fetchData();
+    fetchScheduled();
     fetchUserProfile();
     fetchProfilePicture();
     updateGreeting();
@@ -127,8 +136,7 @@ function Home() {
       </div>
 
       <div className="home-container">
-
-        {/* SEARCH BAR (Same as Scheduled Transaction) */}
+        {/* SEARCH BAR */}
         <div className="search-box">
           <FaSearch className="search-icon" />
           <input
@@ -156,7 +164,7 @@ function Home() {
           </div>
         </div>
 
-        {/* Recent Transactions Cards */}
+        {/* Recent Transactions */}
         <div className="recent-section">
           <h2 className="recent-title">
             Recent Transactions
@@ -197,6 +205,44 @@ function Home() {
                     )}
                     {e.type}
                   </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ===== Upcoming Scheduled Transactions ===== */}
+        <div className="recent-section">
+          <h2 className="recent-title">
+            Scheduled Transactions
+            <button
+              className="see-all-btn"
+              onClick={() => navigate("/scheduled-transactions")}
+            >
+              See All
+            </button>
+          </h2>
+
+          <div className="recent-cards">
+            {scheduled.length === 0 && (
+              <p className="no-data">No upcoming scheduled transactions</p>
+            )}
+            {scheduled.map((s) => (
+              <div
+                key={s.id}
+                className="transaction-card"
+                onClick={() => navigate(`/edit-scheduled/${s.id}`)}
+              >
+                <div className="icon-wrapper scheduled-bg">
+                  <FaCheckCircle />
+                </div>
+                <div className="details">
+                  <span className="amount">₹{s.amount}</span>
+                  <span className="title">{s.title}</span>
+                </div>
+                <div className="meta">
+                  <span className="date">{s.date}</span>
+                  <span className="type scheduled">Scheduled</span>
                 </div>
               </div>
             ))}
