@@ -87,7 +87,8 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(List.of(frontendUrl));
+        config.setAllowedOrigins(List.of("http://localhost:3000",
+                "https://expensesmanagersystem.netlify.app"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setExposedHeaders(List.of("Authorization"));
