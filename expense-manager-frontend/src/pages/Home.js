@@ -120,7 +120,7 @@ function Home() {
           <h2>{userName}</h2>
         </div>
 
-        <div className="home-profile" onClick={() => navigate("/profile")}>
+        <div className="home-profile">
           {profilePic ? (
             <img
               src={`data:image/jpeg;base64,${profilePic}`}
