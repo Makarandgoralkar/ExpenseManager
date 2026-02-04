@@ -16,7 +16,7 @@ function ScheduledTransactions() {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const res = await API.get("/scheduled-transactions");
+        const res = await API.get("/api/scheduled-transactions");
         setTransactions(res.data);
       } catch (err) {
         console.error(err);
@@ -27,13 +27,13 @@ function ScheduledTransactions() {
 
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this transaction?")) {
-      await API.delete(`/scheduled-transactions/${id}`);
+      await API.delete(`/api/scheduled-transactions/${id}`);
       setTransactions(transactions.filter((t) => t.id !== id));
     }
   };
 
   const markAsCompleted = async (id) => {
-    await API.put(`/scheduled-transactions/${id}/complete`);
+    await API.put(`/api/scheduled-transactions/${id}/complete`);
     setTransactions(
       transactions.map((t) => (t.id === id ? { ...t, completed: true } : t))
     );

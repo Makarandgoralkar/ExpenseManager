@@ -23,14 +23,14 @@ function ProfileDashboard() {
       try {
         const token = localStorage.getItem("token");
 
-        const userRes = await fetch("http://localhost:8080/api/user/profile", {
+        const userRes = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/user/profile`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const userData = await userRes.json();
         setUser(userData);
 
         const imgRes = await fetch(
-          "http://localhost:8080/api/user/profile/picture",
+         `${process.env.REACT_APP_BACKEND_URL}/api/user/profile/picture`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
 

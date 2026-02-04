@@ -31,7 +31,7 @@ function Calendar() {
       const month = String(currentDate.getMonth() + 1).padStart(2, "0");
 
       try {
-        const res = await API.get(`/expenses/month/${year}-${month}`);
+        const res = await API.get(`/api/expenses/month/${year}-${month}`);
         setTransactionDates(res.data);
       } catch {
         setTransactionDates([]);

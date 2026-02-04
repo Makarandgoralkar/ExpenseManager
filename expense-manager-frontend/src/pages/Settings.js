@@ -24,7 +24,7 @@ function Settings() {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await fetch("http://localhost:8080/api/user/delete", {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/user/delete`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

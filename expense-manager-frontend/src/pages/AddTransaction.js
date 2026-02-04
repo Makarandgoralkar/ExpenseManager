@@ -60,7 +60,7 @@ function AddTransaction() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await API.post("/expenses", form);
+      await API.post("/api/expenses", form);
       alert("Transaction Added Successfully!");
       navigate("/home");
     } catch (err) {

@@ -17,7 +17,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await API.post("/auth/login", form);
+      const res = await API.post("/api/auth/login", form);
       saveToken(res.data.token);
       navigate("/home", { replace: true }); // use replace to prevent back navigation
     } catch (err) {
@@ -27,15 +27,15 @@ function Login() {
 
   const handleGoogleLogin = () =>
     (window.location.href =
-      "http://localhost:8080/oauth2/authorization/google");
+      `${process.env.REACT_APP_BACKEND_URL}/oauth2/authorization/google`);
 
   const handleFacebookLogin = () =>
     (window.location.href =
-      "http://localhost:8080/oauth2/authorization/facebook");
+      `${process.env.REACT_APP_BACKEND_URL}/oauth2/authorization/facebook`);
 
   const handleLinkedInLogin = () =>
     (window.location.href =
-      "http://localhost:8080/oauth2/authorization/linkedin");
+      `${process.env.REACT_APP_BACKEND_URL}/oauth2/authorization/linkedin`);
 
   return (
     <div className="auth-page">

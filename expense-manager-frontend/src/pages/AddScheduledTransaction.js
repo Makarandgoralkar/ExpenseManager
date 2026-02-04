@@ -23,7 +23,7 @@ function AddScheduledTransaction() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await API.post("/scheduled-transactions", transaction);
+      await API.post("/api/scheduled-transactions", transaction);
       alert("Scheduled transaction added successfully!");
       navigate("/scheduled-transactions");
     } catch (err) {

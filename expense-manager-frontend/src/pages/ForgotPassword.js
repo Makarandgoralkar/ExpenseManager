@@ -10,7 +10,7 @@ function ForgotPassword() {
   const handleSubmit = async (e) => {
   e.preventDefault();
   try {
-    await API.post("/auth/forgot-password", { email });
+    await API.post("/api/auth/forgot-password", { email });
     setMsg("Reset link sent to your email");
   } catch {
     setMsg("Email not registered");

@@ -32,7 +32,7 @@ function SupportFeedback() {
     if (form.rating) data.append("rating", form.rating);
     if (form.attachment) data.append("attachment", form.attachment);
 
-    await axios.post("http://localhost:8080/api/support", data, {
+    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/support`, data, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },

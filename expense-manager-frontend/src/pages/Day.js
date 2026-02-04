@@ -30,7 +30,7 @@ function Day() {
 
   const fetchTransactions = async (dateStr) => {
     try {
-      const res = await API.get(`/expenses/date/${dateStr}`);
+      const res = await API.get(`/api/expenses/date/${dateStr}`);
       setTransactions(res.data);
 
       let income = 0;

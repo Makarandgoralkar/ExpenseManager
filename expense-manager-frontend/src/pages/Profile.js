@@ -21,12 +21,12 @@ function Profile() {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await API.get("/user/profile", {
+      const res = await API.get("/api/user/profile", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUser({ ...res.data, password: "" });
 
-      const imgRes = await API.get("/user/profile/picture", {
+      const imgRes = await API.get("/api/user/profile/picture", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -55,7 +55,7 @@ function Profile() {
   const handleRemovePhoto = async () => {
     try {
       const token = localStorage.getItem("token");
-      await API.delete("/user/profile/picture", {
+      await API.delete("/api/user/profile/picture", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setPreview("");
@@ -70,14 +70,14 @@ function Profile() {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      await API.put("/user/profile", user, {
+      await API.put("/api/user/profile", user, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
       if (selectedFile) {
         const formData = new FormData();
         formData.append("file", selectedFile);
-        await API.post("/user/profile/upload", formData, {
+        await API.post("/api/user/profile/upload", formData, {
           headers: { Authorization: `Bearer ${token}` },
         });
       }

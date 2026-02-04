@@ -26,7 +26,7 @@ function Transactions() {
 
   const fetchExpenses = async () => {
     try {
-      const res = await API.get("/expenses");
+      const res = await API.get("/api/expenses");
       setExpenses(res.data);
     } catch (error) {
       console.error("Failed to fetch expenses", error);
@@ -40,7 +40,7 @@ function Transactions() {
       return;
     }
     try {
-      const res = await API.get(`/expenses/search?keyword=${keyword}`);
+      const res = await API.get(`/api/expenses/search?keyword=${keyword}`);
       setExpenses(res.data);
     } catch (error) {
       console.error("Search failed", error);

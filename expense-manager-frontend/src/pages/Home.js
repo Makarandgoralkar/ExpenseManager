@@ -31,22 +31,22 @@ function Home() {
   const navigate = useNavigate();
 
   const fetchData = async () => {
-    const expensesRes = await API.get("/expenses");
+    const expensesRes = await API.get("/api/expenses");
     setExpenses(expensesRes.data);
 
-    const summaryRes = await API.get("/expenses/analytics/summary");
+    const summaryRes = await API.get("/api/expenses/analytics/summary");
     setSummary(summaryRes.data);
   };
 
   const fetchScheduled = async () => {
-    const scheduledRes = await API.get("/scheduled-transactions");
+    const scheduledRes = await API.get("/api/scheduled-transactions");
     // Only upcoming (not completed)
     setScheduled(scheduledRes.data.filter((t) => !t.completed));
   };
 
   const fetchUserProfile = async () => {
     try {
-      const res = await API.get("/user/profile");
+      const res = await API.get("/api/user/profile");
       setUserName(res.data.name);
     } catch (error) {
       console.error("Failed to fetch user profile", error);
@@ -55,7 +55,7 @@ function Home() {
 
   const fetchProfilePicture = async () => {
     try {
-      const res = await API.get("/user/profile/picture");
+      const res = await API.get("/api/user/profile/picture");
       setProfilePic(res.data);
     } catch {
       setProfilePic(null);
@@ -90,7 +90,7 @@ function Home() {
       fetchData();
       return;
     }
-    const res = await API.get(`/expenses/search?keyword=${keyword}`);
+    const res = await API.get(`/api/expenses/search?keyword=${keyword}`);
     setExpenses(res.data);
   };
 

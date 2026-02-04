@@ -20,7 +20,7 @@ function EditScheduledTransaction() {
   useEffect(() => {
     const fetchTransaction = async () => {
       try {
-        const res = await API.get(`/scheduled-transactions/${id}`);
+        const res = await API.get(`/api/scheduled-transactions/${id}`);
         if (res.data) {
           setTransaction({
             title: res.data.title || "",
@@ -48,7 +48,7 @@ function EditScheduledTransaction() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await API.put(`/scheduled-transactions/${id}`, transaction);
+      await API.put(`/api/scheduled-transactions/${id}`, transaction);
       alert("Transaction updated successfully!");
       navigate("/scheduled-transactions");
     } catch (err) {

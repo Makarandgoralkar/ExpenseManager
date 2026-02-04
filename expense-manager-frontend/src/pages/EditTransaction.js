@@ -57,7 +57,7 @@ function EditTransaction() {
   // Fetch transaction
   const fetchTransaction = useCallback(async () => {
     try {
-      const res = await API.get(`/expenses/${id}`);
+      const res = await API.get(`/api/expenses/${id}`);
       setForm(res.data);
     } catch (error) {
       console.error("Failed to fetch transaction", error);
@@ -77,7 +77,7 @@ function EditTransaction() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await API.put(`/expenses/${id}`, form);
+      await API.put(`/api/expenses/${id}`, form);
       alert("Transaction updated successfully!");
       navigate("/transactions");
     } catch (error) {
@@ -90,7 +90,7 @@ function EditTransaction() {
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this transaction?")) {
       try {
-        await API.delete(`/expenses/${id}`);
+        await API.delete(`/api/expenses/${id}`);
         alert("Transaction deleted successfully!");
         navigate("/transactions");
       } catch (error) {

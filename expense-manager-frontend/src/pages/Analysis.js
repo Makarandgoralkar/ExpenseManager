@@ -74,7 +74,7 @@ function Analysis() {
       }
 
       // Fetch category summary
-      const res = await API.get("/expenses/analytics/category", { params });
+      const res = await API.get("/api/expenses/analytics/category", { params });
       const formattedData = Object.keys(res.data).map((key) => ({
         name: key,
         value: res.data[key],
@@ -82,7 +82,7 @@ function Analysis() {
       setCategoryData(formattedData);
 
       // Fetch summary for total income/expense
-      const summaryRes = await API.get("/expenses/analytics/summary", { params });
+      const summaryRes = await API.get("/api/expenses/analytics/summary", { params });
       setSummary(summaryRes.data);
 
     } catch (err) {

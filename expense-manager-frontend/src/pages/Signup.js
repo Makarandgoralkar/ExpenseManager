@@ -17,7 +17,7 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await API.post("/auth/signup", form);
+      await API.post("/api/auth/signup", form);
       setMessage("Signup successful! Redirecting to login...");
       setForm({ name: "", email: "", password: "" });
       setTimeout(() => navigate("/login", { replace: true }), 1500);
