@@ -10,6 +10,7 @@ import com.project.expensemanager.security.jwt.JwtUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +34,10 @@ public class AuthController {
 
     @Autowired
     private JwtUtil jwtUtil;
+
+    @Value("${frontend.url}")
+    private String frontendUrl;
+
 
     @Operation(summary = "Sign up a new user", description = "Create a new user with name, email, and password")
     @PostMapping("/signup")
@@ -69,7 +74,7 @@ public class AuthController {
 
         String token = jwtUtil.generateResetToken(email);
 
-        String resetLink = "http://localhost:3000/reset-password?token=" + token;
+        String resetLink = frontendUrl + "/reset-password?token=" + token;
 
         emailService.sendEmail(
                 email,

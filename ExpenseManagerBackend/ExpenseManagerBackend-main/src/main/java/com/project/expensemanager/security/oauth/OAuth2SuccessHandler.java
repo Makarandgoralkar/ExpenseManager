@@ -6,6 +6,7 @@ import com.project.expensemanager.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
@@ -24,6 +25,10 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
     private final JwtUtil jwtUtil;
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
+
+    @Value("${frontend.url}")
+    private String frontendUrl;
+
 
     public OAuth2SuccessHandler(JwtUtil jwtUtil, UserService userService, PasswordEncoder passwordEncoder) {
         this.jwtUtil = jwtUtil;
@@ -61,7 +66,7 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
         String jwt = jwtUtil.generateToken(email);
 
         // URL encode JWT
-        String redirectUrl = "http://localhost:3000/oauth2-success?token=" +
+        String redirectUrl = frontendUrl + "/oauth2-success?token=" +
                 URLEncoder.encode(jwt, StandardCharsets.UTF_8);
 
         response.sendRedirect(redirectUrl);

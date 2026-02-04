@@ -14,7 +14,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/scheduled-transactions")
-@CrossOrigin(origins = "http://localhost:3000")
 public class ScheduledTransactionController {
 
     @Autowired
