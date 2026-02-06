@@ -112,3 +112,9 @@
     font-size: 14px;
   }
 }
+
+@media (max-width: 768px) {
+  .content-wrap {
+    padding-bottom: 120px;
+  }
+}

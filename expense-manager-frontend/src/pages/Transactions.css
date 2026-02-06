@@ -147,9 +147,10 @@ body {
 }
 
 /* Responsive Fix */
+/* ===== MOBILE SAFE AREA FOR BOTTOM NAV ===== */
 @media (max-width: 768px) {
   .transactions-container {
-    padding: 20px 12px;
-    width: 85%;
+    padding-bottom: 120px;
   }
 }
+

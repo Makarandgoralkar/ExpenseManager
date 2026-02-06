@@ -32,3 +32,9 @@
   color: #555;
   font-weight: bold;
 }
+
+@media (max-width: 768px) {
+  .faq-container {
+    padding-bottom: 120px;
+  }
+}

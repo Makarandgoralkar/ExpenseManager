@@ -250,3 +250,9 @@ body {
   font-weight: 600;
   color: #10b981;
 }
+
+@media (max-width: 768px) {
+  .home-container {
+    padding-bottom: 120px;
+  }
+}

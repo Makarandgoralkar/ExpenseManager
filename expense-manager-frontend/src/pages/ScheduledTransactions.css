@@ -176,3 +176,10 @@
   width: 120px;
   opacity: 0.7;
 }
+
+/* ===== MOBILE SAFE AREA FOR BOTTOM NAV ===== */
+@media (max-width: 768px) {
+  .scheduled-container {
+    padding-bottom: 120px;
+  }
+}

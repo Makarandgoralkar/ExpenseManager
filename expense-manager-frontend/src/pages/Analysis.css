@@ -125,3 +125,10 @@
   padding: 50px 0;
   font-weight: bold;
 }
+
+/* ===== MOBILE BOTTOM NAV SPACING FIX ===== */
+@media (max-width: 768px) {
+  .analysis-container {
+    padding-bottom: 120px;
+  }
+}

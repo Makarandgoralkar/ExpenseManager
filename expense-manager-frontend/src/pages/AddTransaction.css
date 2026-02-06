@@ -66,3 +66,10 @@
 .add-transaction-form select {
   margin-bottom: 8px;
 }
+
+/* ===== MOBILE SAFE AREA FOR BOTTOM NAV ===== */
+@media (max-width: 768px) {
+  .content-wrap {
+    padding-bottom: 120px;
+  }
+}
