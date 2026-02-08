@@ -64,14 +64,14 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // Allow auth endpoints
                         .requestMatchers("/api/auth/**").permitAll()
+                        // All other requests require authentication
+                        .requestMatchers("/api/contact/**").permitAll()
                         // Allow Swagger endpoints
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                         // Protected endpoint example
                         .requestMatchers(HttpMethod.DELETE, "/api/user/delete").authenticated()
                         // OAuth2 endpoints
                         .requestMatchers("/oauth2/**", "/login/**").permitAll()
-                        // All other requests require authentication
-                        .requestMatchers("/api/contact/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .oauth2Login(oauth -> oauth
