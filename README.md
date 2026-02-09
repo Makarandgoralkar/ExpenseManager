@@ -3,6 +3,21 @@
 A **Full Stack Expense Manager Application** built using **React.js**, **Spring Boot**, and **MySQL**. This application helps users track income and expenses, analyze spending habits, manage scheduled transactions, and securely maintain their financial data.
 
 ---
+## 🌐 Live Application
+
+🔗 Frontend (Netlify)
+https://expensesmanagerapplication.netlify.app
+
+🔗 Backend (Render)
+https://expensemanager-backend-zkl3.onrender.com
+
+🔗 Swagger API Docs  
+https://expensemanager-backend-zkl3.onrender.com/swagger-ui/index.html
+
+## 🎥 Demo Video
+
+▶ Demo Walkthrough:
+https://drive.google.com/file/d/1ufPrDSkMk44gXrv12UOg5PrTXBl0ZwSU/view?usp=drive_link
 
 ## 📌 Features
 
@@ -52,6 +67,13 @@ A **Full Stack Expense Manager Application** built using **React.js**, **Spring 
 * Terms of Service
 * Go Premium (UI-ready)
 
+### 🚀 Production Ready Features
+
+* Cloud Deployment (Render + Netlify)
+* Secure Environment Variables
+* OAuth2 Social Login Integration
+* JWT Secure Authentication
+* Dockerized Application
 ---
 
 ## 🧱 Tech Stack
@@ -82,6 +104,8 @@ A **Full Stack Expense Manager Application** built using **React.js**, **Spring 
 * Docker
 * Docker Compose
 * Nginx
+* Render (Backend Hosting)
+* Netlify (Frontend Hosting)
 
 ---
 
@@ -137,16 +161,22 @@ EXPENSE MANAGER/
 
 ## 🔗 API Documentation (Swagger)
 
-After running the backend:
+### 🌐 Live Swagger (Production)
 
-```
+https://expensemanager-backend-zkl3.onrender.com/swagger-ui/index.html
+
+---
+
+### 🖥️ Local Swagger (Development)
+
+After running backend locally:
+
 http://localhost:8080/swagger-ui.html
-```
 
-or
+OR
 
-```
 /v3/api-docs
+
 ```
 
 ---
@@ -190,7 +220,7 @@ Full Stack Developer
 
 This project is developed for learning and demonstration purposes.
 
-© 2025 Makarand Goralkar. All rights reserved.
+© 2026 Makarand Goralkar. All rights reserved.
 
 ## 📸 Screenshots
 
