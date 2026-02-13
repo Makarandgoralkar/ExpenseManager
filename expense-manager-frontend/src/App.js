@@ -23,6 +23,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import SupportFeedback from "./pages/SupportFeedback";
 import Contact from "./pages/Contact";
+import Budget from "./pages/Budget";
 
 import ScheduledTransactions from "./pages/ScheduledTransactions";
 import AddScheduledTransaction from "./pages/AddScheduledTransaction";
@@ -43,6 +44,8 @@ function App() {
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/support" element={<SupportFeedback />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/budget" element={<Budget />} />
+        
 
         {/* Protected routes */}
         <Route
@@ -183,6 +186,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+
       </Routes>
     </Router>
   );

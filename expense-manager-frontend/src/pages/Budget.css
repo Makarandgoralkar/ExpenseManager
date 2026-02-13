@@ -1,0 +1,98 @@
+/* Main Container */
+.budget-container {
+  max-width: 420px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.segmented-toggle {
+  display: flex;
+  background: #f3f3f3;
+  border-radius: 16px;   /* bigger curve */
+  padding: 6px;          /* more space around buttons */
+  margin-bottom: 40px;
+}
+
+.segmented-toggle button {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 14px 10px;    /* 👈 Increase height */
+  font-size: 16px;       /* 👈 Bigger text */
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 14px;
+  transition: all 0.2s ease;
+}
+
+.segmented-toggle button.active {
+  background: white;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+}
+
+/* Illustration */
+.budget-illustration {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.budget-illustration img {
+  width: 180px;
+  max-width: 80%;
+}
+
+/* Heading */
+.budget-heading {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+/* Description */
+.budget-description {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.setup-budget-btn {
+  width: 100%;
+  max-width: 300px;
+  background: black;
+  color: white;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 20px auto 0;
+  display: block;
+}
+
+/* Update your page-wrapper to handle scrolling better */
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Ensure the content area expands but allows space for the footer */
+.content-wrap {
+  flex: 1;
+  padding-bottom: 100px; /* This creates space so the button isn't hidden behind the floating footer */
+  overflow-y: auto;
+}
+
+.budget-container {
+  max-width: 420px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+  /* Add this to prevent the container from collapsing */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

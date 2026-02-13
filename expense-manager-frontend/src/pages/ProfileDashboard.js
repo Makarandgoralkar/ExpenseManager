@@ -5,6 +5,7 @@ import {
   FaMoneyBillAlt,
   FaCalendarAlt,
   FaCog,
+  FaWallet,
   FaStar,
   FaQuestionCircle,
   FaSignOutAlt,
@@ -96,6 +97,12 @@ function ProfileDashboard() {
               <FaStar />
               <span>Go Premium</span>
             </div>
+
+            <div className="option-card" onClick={() => handleNavigate("/budget")}>
+              <FaWallet />
+              <span>Budget</span>
+            </div>
+
 
             <div className="options-title">Views</div>
             <div className="option-card" onClick={() => handleNavigate("/day")}>

@@ -248,6 +248,38 @@ function Home() {
             ))}
           </div>
         </div>
+
+        {/* ===== Budgets Section ===== */}
+        <div className="budget-section">
+          <h2 className="budget-section-title">Your budgets</h2>
+
+          <div className="budget-card">
+            {/* Left Content */}
+            <div className="budget-card-left">
+              <h3>No Budget for This Month?</h3>
+
+              <p>
+                Setting a monthly budget helps you track spending and stay in control of
+                your finances.
+              </p>
+
+              <button
+                className="budget-setup-btn"
+                onClick={() => navigate("/budget")}
+              >
+                Set Up Budget
+              </button>
+            </div>
+
+            {/* Right Illustration */}
+            <div className="budget-card-right">
+              <img
+                src="/budget-illustration.png"
+                alt="Budget Illustration"
+              />
+            </div>
+          </div>
+        </div>
       </div>
 
       <Footer />
